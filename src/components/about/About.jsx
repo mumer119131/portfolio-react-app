@@ -10,10 +10,11 @@ import {SiDjango} from 'react-icons/si'
 import {IoLogoJavascript} from 'react-icons/io'
 import {FaReact} from 'react-icons/fa'
 import {SiFlask} from 'react-icons/si'
+
 const About = () => {
   const logoSize = 30;
   return (
-    <div className="container about__container">
+    <div className="container about__container" id='about'>
       <p>Get to know more</p>
       <h2>About Me</h2>
       <div className="about__desc">

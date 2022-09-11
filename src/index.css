@@ -26,9 +26,10 @@ html{
   margin: 4rem;
   text-align: center;
 }
-.container p{
+.container > p{
   font-weight: 300;
   color: var(--color-light);
+  text-transform: capitalize;
 }
 .container h2{
   font-size: 2rem;

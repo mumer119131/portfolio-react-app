@@ -2,7 +2,7 @@ import React from 'react'
 import './home.css'
 import MY_IMAGE from '../../assets/my.png'
 import CROWN_IMG from '../../assets/doodles/crown.png'
-
+import CV from '../../assets/cv.pdf'
 
 const CROWN_REF = React.createRef()
 
@@ -17,8 +17,8 @@ const Home = () => {
       <h2><img src={CROWN_IMG} alt="" ref={CROWN_REF}/> Muhammad Umer</h2>
       <p>- FullStack Developer -</p>
       <div className="btn__container">
-        <button className='btn'>Download CV</button>
-        <button className='btn btn__primary'>Let's Talk</button>
+        <a href={CV} download className='btn'>Download CV</a>
+        <a href='#contact' className='btn btn__primary'>Let's Talk</a>
       </div>
       <div className="img__container">
         <img  src={MY_IMAGE} alt="" />
