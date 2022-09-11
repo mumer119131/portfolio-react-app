@@ -10,8 +10,8 @@ import Footer from './components/footer/Footer'
 function App() {
   return (
     <>
-      <Navigation />
       <Home />
+      <Navigation />
       <About />
       <Experience />
       <Portfolio />

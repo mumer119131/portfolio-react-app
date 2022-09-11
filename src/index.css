@@ -11,12 +11,71 @@
   --color-primary : #303838;
   --color-primary-variant : #1f2a2a;
   --color-secondry : #FDE74C;
-  --color-light : rbga(0,0,0,0.5);
+  --color-light : rbga(0,0,0,0.3);
   --color-white : white;
   --transition : 0.5s linear;
+
+  --container-width-lg: 75%;
+  --container-width-md: 86%;
+  --container-width-sm: 90%;
+}
+html{
+  scroll-behavior: smooth;
 }
 .container{
-  height: 100vh;
-  padding: 3rem;
+  margin: 4rem;
+  text-align: center;
+}
+.container p{
+  font-weight: 300;
+  color: var(--color-light);
+}
+.container h2{
+  font-size: 2rem;
+  color: var(--color-secondry);
+}
+body{
+  background-color: var(--color-primary);
+  color: var(--color-white);
 }
 
+.btn{
+  background-color: transparent;
+  border: 1px solid var(--color-secondry);
+  color: var(--color-secondry);
+  padding: 0.8rem 1.3rem;
+  border-radius: 8px;
+  transition: var(--transition);
+  cursor: pointer;
+}
+.btn__primary{
+  background-color: var(--color-secondry);
+  color: var(--color-primary);
+}
+
+.btn:hover{
+  background-color: var(--color-white);
+  color: var(--color-primary);
+  border: none;
+  letter-spacing: 1px;
+}
+
+::-webkit-scrollbar{
+  display: none;
+}
+
+/* ==================MEDIA QURIES (MEDIUM DEVICES)=============== */
+
+@media screen and (max-width:1024px){
+  .container{
+      margin: 3rem;
+  }
+}
+
+/* ==================MEDIA QURIES (SMALL DEVICES)=============== */
+
+@media screen and (max-width:600px) {
+  .container {
+      margin: 1rem;
+  }
+}
