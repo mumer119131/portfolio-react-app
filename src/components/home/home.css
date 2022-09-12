@@ -109,4 +109,7 @@
     .side__bar{
         display: none;
     }
+    .home__container{
+        padding-top: 2rem;
+    }
 }
