@@ -8,14 +8,17 @@ footer h2{
     margin-bottom: 1rem;
     color: var(--color-primary);
 }
-.social__container{
+.social__container__footer{
     font-size: 2rem;
     display: flex;
     gap: 2rem;
     color: var(--color-primary);
     justify-content: center;
 }
-.social__container::after{
+.social__container__footer a{
+    color: var(--color-primary);
+}
+.social__container__footer::after{
     content: '';
     position: absolute;
     width: 0.3rem;
