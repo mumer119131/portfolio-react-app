@@ -2,14 +2,14 @@ import React, { useRef } from 'react'
 import './contact.css'
 import emailjs from '@emailjs/browser';
 import DOODLE from '../../assets/doodles/person_using_comp.png'
-import HEART_DOODLE from '../../assets/doodles/heart.png'
-import {SERVICE_ID, TEMPLATE_ID, PUBLIC_KEY} from './emailJsAuth'
+import HEART_DOODLE from '../../assets/doodles/heart.png
+//import {SERVICE_ID, TEMPLATE_ID, PUBLIC_KEY} from './emailJsAuth'
 import {ToastContainer, toast} from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
 const Contact = () => {
   const form = useRef()
 
-  const sendEmail = (e) =>{
+  //const sendEmail = (e) =>{
     e.preventDefault();
 
     emailjs.sendForm({SERVICE_ID}, {TEMPLATE_ID}, form.current, {PUBLIC_KEY})
@@ -30,7 +30,7 @@ const Contact = () => {
           <img src={DOODLE} alt="" />
           <img src={HEART_DOODLE} alt="" className='doodle__heart'/>
         </div>
-        <form ref={form} onSubmit={sendEmail} className="contact__form__container" data-aos='slide-left'>
+        <form ref={form} className="contact__form__container" data-aos='slide-left'>
           <h3>Let's Talk</h3>
           <p>Fill in the required fields.</p>
           <input type="text" placeholder='Name'  name='name' id="name" required/>
