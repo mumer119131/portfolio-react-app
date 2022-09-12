@@ -2,7 +2,7 @@ import React, { useRef } from 'react'
 import './contact.css'
 import emailjs from '@emailjs/browser';
 import DOODLE from '../../assets/doodles/person_using_comp.png'
-import HEART_DOODLE from '../../assets/doodles/heart.png
+import HEART_DOODLE from '../../assets/doodles/heart.png'
 //import {SERVICE_ID, TEMPLATE_ID, PUBLIC_KEY} from './emailJsAuth'
 import {ToastContainer, toast} from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
@@ -10,16 +10,16 @@ const Contact = () => {
   const form = useRef()
 
   //const sendEmail = (e) =>{
-    e.preventDefault();
+  //   e.preventDefault();
 
-    emailjs.sendForm({SERVICE_ID}, {TEMPLATE_ID}, form.current, {PUBLIC_KEY})
-      .then((result) => {
-          toast.success('Sent the Message!')
-      }, (error) => {
-          toast.error('Some error occured')
-      });
-      e.target.reset()
-  }
+  //   emailjs.sendForm({SERVICE_ID}, {TEMPLATE_ID}, form.current, {PUBLIC_KEY})
+  //     .then((result) => {
+  //         toast.success('Sent the Message!')
+  //     }, (error) => {
+  //         toast.error('Some error occured')
+  //     });
+  //     e.target.reset()
+  // }
   return (
     <div className="container contact__container" id='contact'>
       <p>Get in touch with me</p>
