@@ -93,7 +93,7 @@ const Experience = () => {
         {
           experience_data_frontend.map(({key, logo, exp, exp_desc}) =>{
             return (
-              <div className="exp__item" key={key}>
+              <div className="exp__item" key={key} data-aos="slide-up">
                   {logo}
                   <h3>{exp}</h3>
                   <p>{exp_desc}</p>
@@ -108,7 +108,7 @@ const Experience = () => {
         {
           experience_data_backend.map(({key, logo, exp, exp_desc}) =>{
             return (
-              <div className="exp__item" key={key}>
+              <div className="exp__item" key={key} data-aos="zoom-in-up">
                   {logo}
                   <h3>{exp}</h3>
                   <p>{exp_desc}</p>

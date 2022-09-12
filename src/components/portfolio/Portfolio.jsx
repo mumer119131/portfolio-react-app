@@ -39,7 +39,7 @@ const Portfolio = () => {
         {
           PORFOLIO_ITEMS_DATA.map(({id, img, web_name, details, github_link, live_preview })=>{
             return(
-              <div className="portfolio__item" key={id}>
+              <div className="portfolio__item" key={id} data-aos='zoom-in-up'>
                 <img src={img} alt="" />
                 <h3>{web_name}</h3>
                 <p>{details}</p>

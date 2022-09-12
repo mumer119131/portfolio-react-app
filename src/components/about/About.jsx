@@ -18,7 +18,7 @@ const About = () => {
       <p>Get to know more</p>
       <h2>About Me</h2>
       <div className="about__desc">
-        <div className="designer__desc">
+        <div className="designer__desc" data-aos ='slide-right'>
           <h2>Designer</h2>
           <p>"I am a graphic designer with over 3 years of Experience. I had worked as a freelancer and full time graphic designer with alot of companies."</p>
           <div className="technology__items">
@@ -28,10 +28,10 @@ const About = () => {
             <SiAdobexd size={logoSize}/>
           </div>
         </div>
-        <div className="doodle__container">
+        <div className="doodle__container" data-aos='fade-up'>
           <img src={ROCKET_DOODLE} alt="" />
         </div>
-        <div className="coder__desc">
+        <div className="coder__desc" data-aos='slide-left'>
           <h2>Programmer</h2>
           <p>"I am fullstack Web Developer with over 4+ year of Experience. I had worked for some multinational companies and also a freelancer."</p>
           <div className="technology__items">

@@ -37,14 +37,14 @@ const TESTIMONIALS_DATA = [
 ]
 const Testmonials = () => {
   return (
-    <div className="container testimonials__container">
+    <div className="container testimonials__container" id='testimonials'>
       <p>What clients says</p>
       <h2>Testimonials</h2>
       <div className="testimonial__items">
         {
           TESTIMONIALS_DATA.map(({id, img, username ,clinet_name, review})=>{
             return(
-              <div className="testimonial__item" key={id}>
+              <div className="testimonial__item" key={id} data-aos="slide-right">
                 <img src={img} alt="" />
                 <h2>{clinet_name}</h2>
                 <small>{username}</small>
