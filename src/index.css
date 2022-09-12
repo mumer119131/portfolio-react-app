@@ -25,6 +25,7 @@ html{
 .container{
   margin: 4rem;
   text-align: center;
+  overflow: hidden;
 }
 .container > p{
   font-weight: 300;

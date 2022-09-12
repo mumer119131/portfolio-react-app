@@ -44,7 +44,7 @@ const Testmonials = () => {
         {
           TESTIMONIALS_DATA.map(({id, img, username ,clinet_name, review})=>{
             return(
-              <div className="testimonial__item" key={id} data-aos="slide-right">
+              <div className="testimonial__item" key={id} data-aos="flip-right">
                 <img src={img} alt="" />
                 <h2>{clinet_name}</h2>
                 <small>{username}</small>

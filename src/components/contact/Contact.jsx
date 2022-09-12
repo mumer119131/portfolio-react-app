@@ -26,11 +26,11 @@ const Contact = () => {
       <h2>Contact Us</h2>
       <ToastContainer />
       <div className="contact__data__container">
-        <div className="doodle__container" data-aos='slide-right'>
+        <div className="doodle__container" data-aos='flip-left'>
           <img src={DOODLE} alt="" />
           <img src={HEART_DOODLE} alt="" className='doodle__heart'/>
         </div>
-        <form ref={form} className="contact__form__container" data-aos='slide-left'>
+        <form ref={form} className="contact__form__container" data-aos='flip-right'>
           <h3>Let's Talk</h3>
           <p>Fill in the required fields.</p>
           <input type="text" placeholder='Name'  name='name' id="name" required/>
