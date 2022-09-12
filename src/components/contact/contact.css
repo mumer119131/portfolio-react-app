@@ -44,7 +44,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    min-width: 30rem;
+    min-width: 25rem;
 }
 .contact__form__container h3{
     color: var(--color-secondry);
@@ -62,4 +62,34 @@
 }
 .contact__container input[type="submit"]{
     font-weight: 500;
+}
+
+/* ==================MEDIA QURIES (MEDIUM DEVICES)=============== */
+
+@media screen and (max-width:1024px){
+    
+}
+
+/* ==================MEDIA QURIES (SMALL DEVICES)=============== */
+
+@media screen and (max-width:600px) {
+    .contact__form__container{
+        min-width: 18rem;
+    }
+    .contact__container img{
+        width: 8rem;
+    }
+    .contact__container .doodle__heart{
+        width: 2rem;
+    }
+    @keyframes animateHeart {
+        0%{
+            width: 2rem;
+        }50%{
+            width: 4rem;
+        }100%{
+            width: 2rem;
+        }
+    }
+    
 }
