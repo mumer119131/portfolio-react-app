@@ -23,7 +23,7 @@ html{
   scroll-behavior: smooth;
 }
 .container{
-  margin: 4rem;
+  padding: 4rem;
   text-align: center;
   overflow: hidden;
 }
@@ -70,7 +70,7 @@ body{
 
 @media screen and (max-width:1024px){
   .container{
-      margin: 3rem;
+      padding: 3rem;
   }
 }
 
@@ -78,6 +78,6 @@ body{
 
 @media screen and (max-width:600px) {
   .container {
-      margin: 1rem;
+      padding: 1rem;
   }
 }
