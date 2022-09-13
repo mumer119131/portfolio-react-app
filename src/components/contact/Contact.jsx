@@ -30,7 +30,7 @@ const Contact = () => {
           <img src={DOODLE} alt="" />
           <img src={HEART_DOODLE} alt="" className='doodle__heart'/>
         </div>
-        <form ref={form} className="contact__form__container" data-aos='flip-right'>
+        <form ref={form} className="contact__form__container" data-aos='fade-right'>
           <h3>Let's Talk</h3>
           <p>Fill in the required fields.</p>
           <input type="text" placeholder='Name'  name='name' id="name" required/>
