@@ -3,6 +3,8 @@ import './portfolio.css'
 import MOCKUP_1 from '../../assets/mockup_1.png'
 import MOCKUP_2 from '../../assets/mockup_2.png'
 import MOCKUP_3 from '../../assets/mockup_3.png'
+import MOCKUP_4 from '../../assets/mockup_4.png'
+import MOCKUP_5 from '../../assets/mockup_5.png'
 
 const PORFOLIO_ITEMS_DATA = [
   {
@@ -28,6 +30,22 @@ const PORFOLIO_ITEMS_DATA = [
     "details" : "React Web Application of a Real Estate website covering their servies and other details.",
     "github_link" : "https://github.com/mumer119131/udeveloper_react_app",
     "live_preview" : "https://udeveloper.vercel.app/"
+  },
+  {
+    "id"  : "4",
+    "img" : MOCKUP_4, 
+    "web_name" : "PNA News",
+    "details" : "Read all the news of top Pakistan news channels at one place.",
+    "github_link" : "https://github.com/mumer119131/pna_news_web",
+    "live_preview" : "https://pna_news.surge.sh/"
+  },
+  {
+    "id"  : "5",
+    "img" : MOCKUP_5, 
+    "web_name" : "Disney Concept Web",
+    "details" : "A conecpt website design for the disney land.",
+    "github_link" : "https://github.com/mumer119131/Disney-Concept-Website",
+    "live_preview" : "https://disney_web.surge.sh/"
   },
 ]
 const Portfolio = () => {

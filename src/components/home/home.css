@@ -60,7 +60,7 @@
     color: var(--color-secondry);
 }
 .social__container{
-    left: 0;
+    left: 1.3rem;
 }
 .side__bar::after{
     content: '';
@@ -82,7 +82,7 @@
 }
 
 .scroll__container{
-    right: 0;
+    right: 1rem;
 }
 
 .scroll__container p{

@@ -1,7 +1,6 @@
 .testimonial__items{
     display: flex;
     flex-wrap: wrap;
-    margin: 2rem;
     gap: 1rem;
     justify-content: center;
 }

@@ -3,8 +3,8 @@
 .portfolio__items{
     display: flex;
     flex-wrap: wrap;
-    gap: 1rem;
-    justify-content: space-around;
+    gap: 2rem;
+    justify-content: center;
     margin-top: 2rem;
 }
 
