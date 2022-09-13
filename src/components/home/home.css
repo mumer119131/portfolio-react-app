@@ -53,7 +53,7 @@
 }
 
 .side__bar{
-    display: flex !important;
+    display: flex;
     flex-direction: column;
     gap: 0.8rem;
     color: var(--color-secondry);
