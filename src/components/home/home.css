@@ -53,14 +53,14 @@
 }
 
 .side__bar{
-    display: flex;
+    display: flex !important;
     flex-direction: column;
     gap: 0.8rem;
-    position: absolute;
     color: var(--color-secondry);
+    position: absolute;
 }
-.social__container{
-    left: 1.3rem;
+.social__container__home{
+    left: 1rem;
 }
 .side__bar::after{
     content: '';
@@ -72,12 +72,12 @@
     left: 50%;
     transform: translateX(-50%);
 }
-.social__container a i{
+.social__container__home a i{
     color: var(--color-secondry);
     cursor: pointer;
     transition: var(--transition);
 }
-.social__container a i:hover{
+.social__container__home a i:hover{
     color: var(--color-white);
 }
 

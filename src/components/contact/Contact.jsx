@@ -3,23 +3,28 @@ import './contact.css'
 import emailjs from '@emailjs/browser';
 import DOODLE from '../../assets/doodles/person_using_comp.png'
 import HEART_DOODLE from '../../assets/doodles/heart.png'
-//import {SERVICE_ID, TEMPLATE_ID, PUBLIC_KEY} from './emailJsAuth'
 import {ToastContainer, toast} from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
 const Contact = () => {
   const form = useRef()
-
-  //const sendEmail = (e) =>{
-  //   e.preventDefault();
-
-  //   emailjs.sendForm({SERVICE_ID}, {TEMPLATE_ID}, form.current, {PUBLIC_KEY})
-  //     .then((result) => {
-  //         toast.success('Sent the Message!')
-  //     }, (error) => {
-  //         toast.error('Some error occured')
-  //     });
-  //     e.target.reset()
-  // }
+  const TEMPLATE_ID = process.env.REACT_APP_TEMPLATE_ID;
+  const SERVICE_ID = process.env.REACT_APP_SERVICE_ID;
+  const PUBLIC_KEY = process.env.REACT_APP_PUBLIC_KEY;
+  
+  
+  const sendEmail = (e) =>{
+    e.preventDefault();
+    console.log(process.env);
+    console.log(TEMPLATE_ID, SERVICE_ID, PUBLIC_KEY)
+    emailjs.sendForm(`${SERVICE_ID}`,`${TEMPLATE_ID}`,form.current, `${PUBLIC_KEY}`)
+      .then((result) => {
+          toast.success('Message Sent!')
+      }, (error) => {
+          toast.error('Some error occured')
+          console.log(error);
+      });
+      e.target.reset()
+  }
   return (
     <div className="container contact__container" id='contact'>
       <p>Get in touch with me</p>
@@ -30,7 +35,7 @@ const Contact = () => {
           <img src={DOODLE} alt="" />
           <img src={HEART_DOODLE} alt="" className='doodle__heart'/>
         </div>
-        <form ref={form} className="contact__form__container" data-aos='fade-right'>
+        <form ref={form} className="contact__form__container" data-aos='fade-right' onSubmit={sendEmail}>
           <h3>Let's Talk</h3>
           <p>Fill in the required fields.</p>
           <input type="text" placeholder='Name'  name='name' id="name" required/>

@@ -43,7 +43,7 @@ const PORFOLIO_ITEMS_DATA = [
     "id"  : "5",
     "img" : MOCKUP_5, 
     "web_name" : "Disney Concept Web",
-    "details" : "A conecpt website design for the disney land.",
+    "details" : "A conecpt website design for the disney land containing some characters.",
     "github_link" : "https://github.com/mumer119131/Disney-Concept-Website",
     "live_preview" : "https://disney_web.surge.sh/"
   },
