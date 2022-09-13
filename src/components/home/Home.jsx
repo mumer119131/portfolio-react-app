@@ -23,7 +23,7 @@ const Home = () => {
       <div className="img__container">
         <img  src={MY_IMAGE} alt="" />
       </div>
-      <div className="side__bar social__container">
+      <div className="social__container__home side__bar">
         <a href="https://github.com/mumer119131" target="_blank"><i className="fa-brands fa-github"></i></a>
         <a href="https://www.linkedin.com/in/m-umer-06602821b/" target="_blank"><i className="fa-brands fa-linkedin"></i></a>
         <a href="https://www.instagram.com/umer_sma119131/" target="_blank"><i className="fa-brands fa-instagram"></i></a>
