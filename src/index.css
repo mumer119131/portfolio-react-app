@@ -13,7 +13,7 @@
   --color-secondry : #FDE74C;
   --color-light : rbga(0,0,0,0.3);
   --color-white : white;
-  --transition : 0.5s linear;
+  --transition : 0.3s linear;
 
   --container-width-lg: 75%;
   --container-width-md: 86%;
@@ -26,6 +26,7 @@ html{
   padding: 4rem;
   text-align: center;
   overflow: hidden;
+  max-width: 1180px;
 }
 .container > p{
   font-weight: 300;
