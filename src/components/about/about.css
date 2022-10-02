@@ -6,13 +6,12 @@
 }
 .about__desc img{
     width: 12rem;
-    animation: flyAnimation 2s infinite;
     position: relative;
     max-width: 35rem;
     margin-top: 2rem;
 }
 .designer__desc, .coder__desc {
-    max-width: 35rem;
+    max-width: 30rem;
     padding: 2rem;
 }
 .designer__desc h2{
@@ -20,6 +19,28 @@
 }
 .coder__desc h2{
     color: var(--color-secondry);
+}
+
+.doodle__container{
+    position: relative;
+    animation: flyAnimation 2s infinite;
+}
+
+.doodle__container .eye, .eye{
+    position: absolute;
+}
+.doodle__container .eye{
+    width: 10px;
+    top: 0;
+}
+
+.doodle__container .eye:nth-child(1){
+    top: 33px;
+    left: 75px;
+}
+.doodle__container .eye:nth-child(2){
+    top: 34px;
+    left: 98px;
 }
 @keyframes flyAnimation {
     0%{
@@ -38,3 +59,4 @@
     font-size: 1rem;
     margin-top: 2rem;
 }
+

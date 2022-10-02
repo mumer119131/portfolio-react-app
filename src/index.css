@@ -29,6 +29,7 @@ html{
   position: relative;
   left: 50%;
   transform: translateX(-50%);
+  overflow: hidden;
 }
 .container > p{
   font-weight: 300;

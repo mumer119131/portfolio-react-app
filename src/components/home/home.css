@@ -1,5 +1,5 @@
 .home__container{
-    min-height: 100vh;
+ padding-top: 3rem;   
 }
 .home__container h2 img{
     width: 2rem;
@@ -115,6 +115,6 @@
         display: none;
     }
     .home__container{
-        padding-top: 2rem;
+        padding-top: 3rem;
     }
 }

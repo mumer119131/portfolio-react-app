@@ -1,6 +1,6 @@
 import React, { useRef } from 'react'
 import './home.css'
-import MY_IMAGE from '../../assets/my.png'
+import MY_IMAGE from '../../assets/my.svg'
 import CROWN_IMG from '../../assets/doodles/crown.png'
 import CV from '../../assets/cv.pdf'
 
@@ -25,7 +25,7 @@ const Home = () => {
           <img  src={MY_IMAGE} alt="" />
         </div>
         <div className="social__container__home side__bar">
-          <a href="https://github.com/mumer119131" target="_blank"><i className="fa-brands fa-github"></i></a>
+          <a href="https://github.com/mumer119131" target="_blank" ><i className="fa-brands fa-github"></i></a>
           <a href="https://www.linkedin.com/in/m-umer-06602821b/" target="_blank"><i className="fa-brands fa-linkedin"></i></a>
           <a href="https://www.instagram.com/umer_sma119131/" target="_blank"><i className="fa-brands fa-instagram"></i></a>
           <a href="https://www.facebook.com/profile.php?id=100083694507517" target="_blank"><i className="fa-brands fa-facebook"></i></a>
