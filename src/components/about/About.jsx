@@ -1,6 +1,7 @@
 import React from 'react'
 import './about.css'
-import ROCKET_DOODLE from '../../assets/doodles/spaceship.png'
+import BRAIN_IMG from '../../assets/doodles/brain_without_eyes.png'
+import EYES_IMG from '../../assets/doodles/eye_ball.png'
 import {SiAdobephotoshop} from 'react-icons/si'
 import {SiAdobeillustrator} from 'react-icons/si'
 import {CgFigma} from 'react-icons/cg'
@@ -10,8 +11,37 @@ import {SiDjango} from 'react-icons/si'
 import {IoLogoJavascript} from 'react-icons/io'
 import {FaReact} from 'react-icons/fa'
 import {SiFlask} from 'react-icons/si'
+import { useEffect } from 'react'
 
 const About = () => {
+  
+  useEffect(()=>{
+    
+    
+    const anchor = document.getElementById('anchor')
+    const rekt = anchor.getBoundingClientRect()
+    const anchorX = rekt.left + rekt.width / 2;
+    const anchorY = rekt.top + rekt.height / 2;
+
+    document.addEventListener('mousemove',(e)=>{
+      const mouseX = e.clientX;
+      const mouseY = e.clientY;
+      const angleDeg = angle(mouseX, mouseY, anchorX, anchorY)
+      
+      const eyes = document.querySelectorAll('.eye')
+      eyes.forEach(eye => {
+        eye.style.transform = `rotate(${angleDeg}deg)`
+      });
+    })
+
+    function angle(cx, cy, ex, ey){
+      const dy = ey - cy;
+      const dx = ex - cx;
+      const rad = Math.atan2(dy, dx);
+      const deg = rad * 180 / Math.PI;
+      return deg
+    }
+  },[])
   const logoSize = 30;
   return (
     <div className="container about__container" id='about'>
@@ -29,7 +59,11 @@ const About = () => {
           </div>
         </div>
         <div className="doodle__container" data-aos='fade-up'>
-          <img src={ROCKET_DOODLE} alt="" />
+          <img src={BRAIN_IMG} alt="" id='anchor'/>
+          <div className="eyes">
+            <img src={EYES_IMG} alt="" className='eye'/>
+            <img src={EYES_IMG} alt="" className='eye'/>
+          </div>
         </div>
         <div className="coder__desc" data-aos='slide-left'>
           <h2>Programmer</h2>
