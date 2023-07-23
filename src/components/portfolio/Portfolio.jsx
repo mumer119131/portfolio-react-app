@@ -26,26 +26,26 @@ const PORFOLIO_ITEMS_DATA = [
   {
     "id": "3",
     "img": MOCKUP_3,
-    "web_name": "U Developers",
-    "details": "React Web Application of a Real Estate website covering their servies and other details.",
-    "github_link": "https://github.com/mumer119131/udeveloper_react_app",
-    "live_preview": "https://udeveloper.vercel.app/"
+    "web_name": "Tailors App",
+    "details": "Java based android mobile application for the tailors to store their clients information with backup and restore facility",
+    "github_link": "https://github.com/mumer119131/TailorsApp",
+    "live_preview": "https://github.com/mumer119131/TailorsApp"
   },
   {
     "id": "4",
     "img": MOCKUP_4,
-    "web_name": "PNA News",
-    "details": "Read all the news of top Pakistan news channels at one place.",
-    "github_link": "https://github.com/mumer119131/pna_news_web",
-    "live_preview": "https://pna_news.surge.sh/"
+    "web_name": "Edit Pro",
+    "details": "A Image editing web application with frontend based on ReactJS and backend based on Flask Python",
+    "github_link": "https://github.com/mumer119131/Image_Editor_Python_React",
+    "live_preview": "https://image-editor-client.vercel.app"
   },
   {
     "id": "5",
     "img": MOCKUP_5,
-    "web_name": "Disney Concept Web",
-    "details": "A conecpt website design for the disney land containing some characters.",
-    "github_link": "https://github.com/mumer119131/Disney-Concept-Website",
-    "live_preview": "https://disney_web.surge.sh/"
+    "web_name": "Plus Pictures",
+    "details": "A ReactJS based web application with Pixabay, Pexels and Unsplash at a single platform",
+    "github_link": "https://github.com/mumer119131/PlusPictures",
+    "live_preview": "https://plus-pictures.vercel.app"
   },
 ]
 const Portfolio = () => {

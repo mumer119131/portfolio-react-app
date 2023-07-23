@@ -14,8 +14,8 @@ import {SiMongodb} from 'react-icons/si'
 
 import BACKEND_IMG from '../../assets/doodles/web.png'
 import FRONTEND_IMG from '../../assets/doodles/person_on_comp.png'
-
-
+import {FaNode} from 'react-icons/fa'
+import {SiExpress} from 'react-icons/si'
 const experience_data_frontend = [
   {
     "key" : "1",
@@ -63,23 +63,35 @@ const experience_data_backend = [
     "exp_desc" : "Python is a high-level, general-purpose programming language. Its design philosophy emphasizes code readability with the use of significant indentation."
   },
   {
-    "key" : "1",
+    "key" : "2",
     "logo" : <SiDjango />,
     "exp" : "Django",
     "exp_desc" : "Django is a free and open-source, Python-based web framework that follows the model–template–views architectural pattern."
   },
   {
-    "key" : "1",
+    "key" : "3",
     "logo" : <SiFlask />,
     "exp" : "Flask",
     "exp_desc" : "Flask is a micro web framework written in Python. It is classified as a microframework because it does not require particular tools or libraries."
   },
   {
-    "key" : "1",
+    "key" : "4",
     "logo" : <SiMongodb />,
     "exp" : "MongoDB",
     "exp_desc" : "MongoDB is an open source NoSQL database management program. NoSQL is used as an alternative to traditional relational databases."
-  }
+  },
+  {
+    "key" : "5",
+    "logo" : <FaNode />,
+    "exp" : "NodeJs",
+    "exp_desc" : "Node.js is an open-source, server-side JavaScript runtime built on Chrome's V8 JavaScript engine, empowering developers to run JavaScript code outside the browser"
+  },
+  {
+    "key" : "6",
+    "logo" : <SiExpress />,
+    "exp" : "ExpressJs",
+    "exp_desc" : "Express.js is a fast, minimalist, and flexible web application framework for Node.js."
+  },
 ]
   
 
