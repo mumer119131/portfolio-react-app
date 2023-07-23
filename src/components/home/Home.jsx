@@ -1,6 +1,6 @@
 import React, { useRef } from 'react'
 import './home.css'
-import MY_IMAGE from '../../assets/my.svg'
+import MY_IMAGE from '../../assets/my.png'
 import CROWN_IMG from '../../assets/doodles/crown.png'
 import CV from '../../assets/cv.pdf'
 
