@@ -27,8 +27,8 @@ const Home = () => {
         <div className="social__container__home side__bar">
           <a href="https://github.com/mumer119131" target="_blank" ><i className="fa-brands fa-github"></i></a>
           <a href="https://www.linkedin.com/in/m-umer-06602821b/" target="_blank"><i className="fa-brands fa-linkedin"></i></a>
-          <a href="https://www.instagram.com/umer_sma119131/" target="_blank"><i className="fa-brands fa-instagram"></i></a>
-          <a href="https://www.facebook.com/profile.php?id=100083694507517" target="_blank"><i className="fa-brands fa-facebook"></i></a>
+          <a href="mailto:mumer119131@gmail.com"><i class="fa-brands fa-google"></i></a>
+          <a href="https://www.linkedin.com/in/dev-umer/" target="_blank"><i class="fa-brands fa-dev"></i></a>
         </div>
         <div className="side__bar scroll__container">
           <p onClick={scrollDown}>Scroll Down</p>
