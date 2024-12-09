@@ -10,11 +10,11 @@ const Footer = () => {
     <footer>
       <h2>| Socials |</h2>
       <div className="social__container__footer" data-aos='slide-up'>
-        <a href="https://github.com/mumer119131" target="_blank"><FaGithub /></a>
-        <a href="https://dev.to/mumer119131" target="_blank"><FaDev /></a>
-        <a href="mailto:mumer119131@gmail.com"><SiGmail /></a>
-        <a href="https://www.linkedin.com/in/dev-umer/" target="_blank"><AiFillLinkedin /></a>
-        <a href="https://www.behance.net/mumer4" target="_blank"><AiFillBehanceCircle /></a>
+        <a href="https://github.com/mumer119131" target="_blank" rel="noreferrer"><FaGithub /></a>
+        <a href="https://dev.to/mumer119131" target="_blank" rel="noreferrer"><FaDev /></a>
+        <a href="mailto:mumer119131@gmail.com" rel="noreferrer"><SiGmail /></a>
+        <a href="https://www.linkedin.com/in/dev-umer/" target="_blank" rel="noreferrer"><AiFillLinkedin /></a>
+        <a href="https://www.behance.net/mumer4" target="_blank" rel="noreferrer"><AiFillBehanceCircle /></a>
       </div> 
     </footer>
   )

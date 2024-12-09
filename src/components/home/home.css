@@ -1,3 +1,6 @@
+body::-webkit-scrollbar{
+    display: none;
+  }
 .home__container{
  padding-top: 3rem;   
 }
