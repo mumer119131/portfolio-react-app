@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import { console_files, replies } from '../../../data/console';
 import Draggable from 'react-draggable';
 
@@ -6,6 +6,7 @@ const Terminal = ({setIsTerminalOpen, className, setAboveWindow}) => {
     const [command, setCommand] = useState("");
       const [previousCommands, setPreviousCommands] = useState([]);
       const [currentCommandIndex, setCurrentCommandIndex] = useState(0);
+      const inputRef = React.useRef(null);
       const [output, setOutput] = useState([
         "   _____         ____ ___                     ",
         "  /     \\       |    |   \\_____   ___________ ",
@@ -78,9 +79,16 @@ const Terminal = ({setIsTerminalOpen, className, setAboveWindow}) => {
             }
         }
       };
+      const onAppClick = () => {
+        setAboveWindow("terminal");
+        inputRef.current.focus();
+      }
+      useEffect(() => {
+        inputRef.current.focus();
+      }, []);
   return (
     <Draggable bounds="parent" handle=".drag-handle">
-        <div className={` text-gray-100 rounded-lg shadow-lg w-3/4 max-w-3xl absolute ${className}`} onClick={()=>setAboveWindow("terminal")} onDrag={()=>setAboveWindow("files")}>
+        <div className={` text-gray-100 rounded-lg shadow-lg w-3/4 max-w-3xl absolute ${className}`} onClick={onAppClick} onDrag={onAppClick}>
                             {/* Header */}
             <div className="bg-gray-700 p-3 flex items-center rounded-t-lg shadow-lg drag-handle" >
             <div className="flex space-x-2">
@@ -112,12 +120,13 @@ const Terminal = ({setIsTerminalOpen, className, setAboveWindow}) => {
             <div className="flex">
                 <span className="text-green-400">$</span>
                 <input
+                ref={inputRef}
                 type="text"
                 className="w-full bg-transparent outline-none text-gray-100 ml-2 font-mono-imp"
                 value={command}
                 onChange={(e) => setCommand(e.target.value)}
                 onKeyDown={handleCommand}
-                placeholder="Type a command..."
+                placeholder=""
                 />
             </div>
             </div>
