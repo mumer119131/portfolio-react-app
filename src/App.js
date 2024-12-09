@@ -4,6 +4,7 @@ import "aos/dist/aos.css";
 import { BrowserRouter, Routes, Route } from "react-router";
 import Homepage from './page/Homepage'
 import Console from './page/Console'
+import { Analytics } from "@vercel/analytics/react"
 
 function App() {
   useEffect(() => {
@@ -12,6 +13,7 @@ function App() {
   
   return (
     <>
+      <Analytics />
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Homepage />} />
