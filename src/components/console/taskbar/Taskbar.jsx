@@ -1,6 +1,15 @@
 import React from 'react'
 import { FaSearch, FaBatteryFull, FaWifi, FaVolumeUp, FaCog } from 'react-icons/fa'; // Example icons
 const Taskbar = () => {
+  const [time, setTime] = React.useState(new Date().toLocaleTimeString());
+
+  React.useEffect(() => {
+    const timer = setInterval(() => {
+      setTime(new Date().toLocaleTimeString());
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, []);
   return (
     <div className="absolute top-0 left-0 w-full bg-gray-800 text-white shadow-md z-50">
     <div className="flex items-center justify-between p-2 max-w-screen-xl mx-auto">
@@ -44,7 +53,7 @@ const Taskbar = () => {
 
         {/* Clock */}
         <div className="text-sm font-semibold">
-          {new Date().toLocaleTimeString()}
+          {time}
         </div>
       </div>
     </div>
