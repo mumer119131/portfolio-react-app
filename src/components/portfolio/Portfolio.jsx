@@ -1,10 +1,11 @@
 import React, { useEffect } from 'react'
 import './portfolio.css'
-import { data } from 'react-router'
+import LoadingState from './LoadingState/LoadingState'
 
 
 const Portfolio = () => {
   const [projects, setProjects] = React.useState([])
+  const [isLoading, setIsLoading] = React.useState(true)
   const backup_projects = [
     {
         "id": "6",
@@ -36,7 +37,7 @@ const Portfolio = () => {
       "web_name": "Tailors App",
       "details": "Java based android mobile application for the tailors to store their clients information with backup and restore facility",
       "github_link": "https://github.com/mumer119131/TailorsApp",
-      "live_preview": "https://github.com/mumer119131/TailorsApp"
+      "live_preview": ""
     },
     {
       "id": "4",
@@ -64,21 +65,21 @@ const Portfolio = () => {
         // const url = "https://jsonhost.com/json/e15a4172d3a716cad67b06b2e9011cfc"
         const response = await fetch(url)
         const data = await response.json()
-        console.log(data.projects)
         setProjects(data.projects)
       }catch(error){
-        setProjects(data)
+        setProjects(backup_projects)
       }
+      setIsLoading(false)
      }
     getProjects()
   },[])
   return (
     <div className="container portfolio__container" id='portfolio'>
       <p>Check out my Recent Work</p>
-      <h2>Portfolio</h2>
+      <h2>Projects</h2>
       <div className="portfolio__items">
         {
-          projects && projects.map(({ id, img, web_name, details, github_link, live_preview }) => {
+          (!isLoading && projects) ? projects.map(({ id, img, web_name, details, github_link, live_preview }) => {
             return (
               <div className="portfolio__item" key={id} data-aos='zoom-in-up'>
                 <img src={img} alt="" />
@@ -91,8 +92,8 @@ const Portfolio = () => {
               </div>
 
             )
-          })
-        }
+          }) : <LoadingState />
+        } 
       </div>
     </div>
   )

@@ -143,6 +143,62 @@ img{
 .wrapper-button:hover{
   visibility: visible;
 }
+
+
+.skeleton-loader {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 100%;
+}
+
+.skeleton {
+  background-color: #e5e7eb; /* Light gray for the skeleton */
+  border-radius: 0.5rem;
+  animation: pulse 1.5s infinite ease-in-out alternate;
+}
+
+.skeleton-image {
+  width: 100%;
+  height: 18rem;
+}
+
+.skeleton-text {
+  height: 20px;
+}
+
+.skeleton-title {
+  width: 60%;
+}
+
+.skeleton-details {
+  width: 90%;
+  height: 50px;
+}
+
+.skeleton-buttons {
+  display: flex;
+  gap: 1rem;
+}
+
+.skeleton-button {
+  width: 100px;
+  height: 40px;
+}
+
+@keyframes pulse {
+  0% {
+    background-color: #818181;
+  }
+  50% {
+    background-color: #6e6e6e;
+  }
+  100% {
+    background-color: #909091;
+  }
+}
+
+
 @media all and (min-width: 960px) {
 	#monitor {
 		-webkit-animation: tvflicker .2s infinite alternate; 

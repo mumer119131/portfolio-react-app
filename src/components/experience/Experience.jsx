@@ -6,6 +6,8 @@ import {IoLogoJavascript} from 'react-icons/io'
 import {GrReactjs} from 'react-icons/gr'
 import {FaBootstrap} from 'react-icons/fa'
 import {SiTailwindcss} from 'react-icons/si'
+import { RiNextjsLine } from "react-icons/ri";
+import { TbBrandReactNative } from "react-icons/tb";
 
 import {DiPython} from 'react-icons/di'
 import {SiDjango} from 'react-icons/si'
@@ -30,6 +32,12 @@ const experience_data_frontend = [
     "exp_desc" : "CSS is the language we use to style an HTML document. CSS describes how HTML elements should be displayed."
   },
   {
+    "key" : "7",
+    "logo" : <RiNextjsLine />,
+    "exp" : "NextJs",
+    "exp_desc" : "Next.js is a React framework that enables functionality such as server-side rendering and generating static websites for React based web applications."
+  },
+  {
     "key" : "3",
     "logo" : <IoLogoJavascript />,
     "exp" : "Javascript",
@@ -52,6 +60,12 @@ const experience_data_frontend = [
     "logo" : <SiTailwindcss/>,
     "exp" : "Tailwind CSS",
     "exp_desc" : "It makes quicker to write and maintain the code of your application. By using this utility-first framework, you don't have to write custom CSS to style your application."
+  },
+  {
+    "key" : "8",
+    "logo" : <TbBrandReactNative />,
+    "exp" : "React Native",
+    "exp_desc" : "React Native is an open-source framework by Facebook for building Android, iOS, Web, and UWP apps using React and native platform features."
   },
 
 ]
@@ -99,7 +113,7 @@ const Experience = () => {
   return (
     <div className="container experience__container" id='experience'>
       <p>Which skills i have</p>
-      <h2>Experience</h2>
+      <h2>Skills</h2>
       <h3>| <img src={FRONTEND_IMG} alt="" /> Frontend |</h3>
       <div className="exp__items__container">
         {
