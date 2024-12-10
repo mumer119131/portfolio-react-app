@@ -42,6 +42,16 @@ export const console_files = {
     ],
   };
 
+export const initialConsoleText = [
+  "   _____         ____ ___                     ",
+  "  /     \\       |    |   \\_____   ___________ ",
+  " /  \\ /  \\      |    |   /     \\_/ __ \\_  __ \\",
+  "/    Y    \\     |    |  /  Y Y  \\  ___/|  | \\/",
+  "\\____|__  / /\\  |______/|__|_|  /\\___  >__|   ",
+  "        \\/  \\/                \\/     \\/        ",
+  "",
+  "Type 'ls' to list available files or 'clear' to reset and you can also \ntry some other commands 😥",
+]
 
 export const replies = {
     pwd: [
@@ -50,9 +60,11 @@ export const replies = {
         "Somewhere between cyberspace and procrastination. 🌌",
       ],
       whoami: [
-        "You're the chosen one, Neo... I mean, user. 🕶️",
-        "Someone who clearly enjoys using fancy consoles. 💻",
-        "Just a human trying to impress their portfolio visitors. 👨‍💻",
+        "Hello! I'm Umer, a passionate full-stack developer from Pakistan.",
+        "I have a BS in Computer Science and a strong background in web and mobile app development.",
+        "I specialize in creating efficient, scalable solutions with technologies like Next.js, React, TypeScript, and MongoDB.",
+        "Some of my notable achievements include being a class topper, silver medalist, and Semantic Search Hackathon runner-up.",
+        "Feel free to contact me for any project, collaboration, or mentoring opportunities.",
       ],
       mkdir: [
         "Creating directories is fun, but where are you going? 📁",

@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import './portfolio.css'
+import { data } from 'react-router'
 
 
 const Portfolio = () => {
@@ -55,9 +56,7 @@ const Portfolio = () => {
     }
   ]
   
-  const convertToArray = (obj) => {
-    return Object.keys(obj).map(key => obj[key])
-  }
+
   useEffect(() => {
      const getProjects = async () => {
       try{
@@ -65,10 +64,10 @@ const Portfolio = () => {
         // const url = "https://jsonhost.com/json/e15a4172d3a716cad67b06b2e9011cfc"
         const response = await fetch(url)
         const data = await response.json()
-        console.log(data)
-        setProjects(convertToArray(data))
+        console.log(data.projects)
+        setProjects(data.projects)
       }catch(error){
-        setProjects(convertToArray(backup_projects))
+        setProjects(data)
       }
      }
     getProjects()
@@ -79,7 +78,7 @@ const Portfolio = () => {
       <h2>Portfolio</h2>
       <div className="portfolio__items">
         {
-          projects.map(({ id, img, web_name, details, github_link, live_preview }) => {
+          projects && projects.map(({ id, img, web_name, details, github_link, live_preview }) => {
             return (
               <div className="portfolio__item" key={id} data-aos='zoom-in-up'>
                 <img src={img} alt="" />
