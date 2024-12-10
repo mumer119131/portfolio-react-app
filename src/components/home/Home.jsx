@@ -24,7 +24,7 @@ const Home = () => {
             <a href='#contact' className='btn btn__primary'>Let's Talk</a>
           </div>
           <div>
-            <Link to="/console" className='btn w-full block no-underline'><IoTerminal className='inline'/>&nbsp;Access Console</Link>
+            <Link to="/console" className='btn w-full block no-underline'><IoTerminal className='inline relative bottom-[1px]'/>&nbsp;&nbsp;Access Console</Link>
           </div>
         </div>
         <div className="img__container">
