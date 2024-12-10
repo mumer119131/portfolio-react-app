@@ -58,15 +58,7 @@ const TV = () => {
             window.removeEventListener('resize', handleResize);
         }
     },[])
-    const handleBackground = () => {
-        if(background === null){
-            setBackground(wallpaperConsole);
-        }
-        if(background.startsWith('#')){
-            return background;
-        }
-        return `url(${background})`
-    }
+   
 return (
     <>
        <div id="container">
@@ -86,7 +78,7 @@ return (
                             transition: { duration: 0.8 },
                             }}>
                 
-                        <div className={`flex flex-col items-center relative bg-no-repeat bg-center bg-cover`} style={{backgroundRepeat: 'no-repeat', backgroundSize: 'cover', backgroundPosition: 'center', minHeight: monitorHeight, backgroundImage: !background?.startsWith("#") && `url(${background})`, backgroundColor: background?.startsWith("#") && background}}>
+                        <div className={`flex flex-col items-center relative bg-no-repeat bg-center bg-cover`} style={{backgroundRepeat: 'no-repeat', backgroundSize: 'cover', backgroundPosition: 'center', minHeight: monitorHeight, backgroundImage: background == null ? `url(${wallpaperConsole})` :((!background?.startsWith("#")) && `url(${background})`), backgroundColor: background?.startsWith("#") && background}}>
                         <Taskbar />
                         <div className='flex flex-col gap-6 absolute left-4 top-16 z-[9]'>
                             <div className='flex flex-col items-center justify-center cursor-pointer' onClick={()=>handleAppOpen('terminal')}>
