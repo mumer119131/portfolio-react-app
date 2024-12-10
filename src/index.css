@@ -22,6 +22,10 @@
   --container-width-lg: 75%;
   --container-width-md: 86%;
   --container-width-sm: 90%;
+
+  --tv-flicker-color: rgba(200,235,255,0.4);
+  --tv-flicker-color-2: rgba(200,220,255,0.6);
+
 }
 html{
   scroll-behavior: smooth;
@@ -128,12 +132,16 @@ img{
 	padding-bottom: 56.25%; 
 	position: relative;
 	overflow: hidden;
+  flex-grow: 1;
 }
 .font-mono-imp{
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace !important;
 }
 .z-index-10{
   z-index: 10;
+}
+.wrapper-button:hover{
+  visibility: visible;
 }
 @media all and (min-width: 960px) {
 	#monitor {
@@ -144,20 +152,20 @@ img{
 	}
 
 	@-webkit-keyframes tvflicker {
-	  0%   { box-shadow: 0 0 100px 0 rgba(200,235,255,0.4); }
-	  100% { box-shadow: 0 0 95px 0 rgba(200,230,255,0.45); }
+	  0%   { box-shadow: 0 0 100px 0 var(--tv-flicker-color); }
+	  100% { box-shadow: 0 0 95px 0 var(--tv-flicker-color-2); }
 	}
 	@-moz-keyframes tvflicker {
-	  0%   { box-shadow: 0 0 100px 0 rgba(225,235,255,0.4); }
-	  100% { box-shadow: 0 0 60px 0 rgba(200,220,255,0.6); }
+	  0%   { box-shadow: 0 0 100px 0 var(--tv-flicker-color); }
+	  100% { box-shadow: 0 0 60px 0 var(--tv-flicker-color-2); }
 	}
 	@-o-keyframes tvflicker {
-	  0%   { box-shadow: 0 0 100px 0 rgba(225,235,255,0.4); }
-	  100% { box-shadow: 0 0 60px 0 rgba(200,220,255,0.6); }
+	  0%   { box-shadow: 0 0 100px 0 var(--tv-flicker-color); }
+	  100% { box-shadow: 0 0 60px 0 var(--tv-flicker-color-2); }
 	}
 	@keyframes tvflicker {
-	  0%   { box-shadow: 0 0 100px 0 rgba(225,235,255,0.4); }
-	  100% { box-shadow: 0 0 60px 0 rgba(200,220,255,0.6); }
+	  0%   { box-shadow: 0 0 100px 0 var(--tv-flicker-color); }
+	  100% { box-shadow: 0 0 60px 0 var(--tv-flicker-color-2); }
 	}
 }
 

@@ -1,22 +1,13 @@
 import React, {useState, useEffect} from 'react'
-import { console_files, replies } from '../../../data/console';
-import Draggable from 'react-draggable';
+import { console_files, initialConsoleText, replies } from '../../../data/console';
+import Wrapper from '../wrapper/Wrapper';
 
 const Terminal = ({setIsTerminalOpen, className, setAboveWindow}) => {
     const [command, setCommand] = useState("");
       const [previousCommands, setPreviousCommands] = useState([]);
       const [currentCommandIndex, setCurrentCommandIndex] = useState(0);
       const inputRef = React.useRef(null);
-      const [output, setOutput] = useState([
-        "   _____         ____ ___                     ",
-        "  /     \\       |    |   \\_____   ___________ ",
-        " /  \\ /  \\      |    |   /     \\_/ __ \\_  __ \\",
-        "/    Y    \\     |    |  /  Y Y  \\  ___/|  | \\/",
-        "\\____|__  / /\\  |______/|__|_|  /\\___  >__|   ",
-        "        \\/  \\/                \\/     \\/        ",
-        "",
-        "Type 'ls' to list available files or 'clear' to reset and you can also \ntry some other commands 😥",
-      ]);
+      const [output, setOutput] = useState(initialConsoleText);
       
       const files = ["about_me.txt", "contact_me.txt", "projects.txt", "how_to_hack_nasa.txt"];
     const handleCommand = (e) => {
@@ -28,16 +19,7 @@ const Terminal = ({setIsTerminalOpen, className, setAboveWindow}) => {
           if (command === "ls") {
             newOutput.push(files.join("  "));
           } else if (command === "clear") {
-            newOutput = [
-              "   _____         ____ ___                     ",
-              "  /     \\       |    |   \\_____   ___________ ",
-              " /  \\ /  \\      |    |   /     \\_/ __ \\_  __ \\",
-              "/    Y    \\     |    |  /  Y Y  \\  ___/|  | \\/",
-              "\\____|__  / /\\  |______/|__|_|  /\\___  >__|   ",
-              "        \\/  \\/                \\/     \\/        ",
-              "",
-              "Type 'ls' to list available files or 'clear' to reset.",
-            ];
+            newOutput = initialConsoleText
             
           } else if(command.split(" ")[0] === "cat"){
             if(files.includes(command.split(" ")[1])){
@@ -87,21 +69,10 @@ const Terminal = ({setIsTerminalOpen, className, setAboveWindow}) => {
         inputRef.current.focus();
       }, []);
   return (
-    <Draggable bounds="parent" handle=".drag-handle">
-        <div className={` text-gray-100 rounded-lg shadow-lg w-3/4 max-w-3xl absolute ${className}`} onClick={onAppClick} onDrag={onAppClick}>
-                            {/* Header */}
-            <div className="bg-gray-700 p-3 flex items-center rounded-t-lg shadow-lg drag-handle" >
-            <div className="flex space-x-2">
-                <span className="w-3 h-3 bg-red-500 rounded-full cursor-pointer" onClick={()=>setIsTerminalOpen(false)}></span>
-                <span className="w-3 h-3 bg-yellow-500 rounded-full"></span>
-                <span className="w-3 h-3 bg-green-500 rounded-full"></span>
-            </div>
-            <div className="flex-1 text-center text-sm font-semibold text-gray-400">
-                Terminal
-            </div>
-            </div>
+        <Wrapper setAboveWindow={setAboveWindow} setIsOpen={setIsTerminalOpen} appName='terminal' className={className} >
             {/* Console Screen */}
             <div
+            onClick={onAppClick}
             id="monitorscreen"
             className="scrollbar p-4 h-96 overflow-y-auto font-mono font-mono-imp text-sm bg-gray-900 !overflow-auto"
             >
@@ -130,8 +101,7 @@ const Terminal = ({setIsTerminalOpen, className, setAboveWindow}) => {
                 />
             </div>
             </div>
-    </div>
-    </Draggable>
+      </Wrapper>
   )
 }
 
