@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 
 import { motion } from "motion/react"
 import terminal_img from "../../assets/terminal.png"
@@ -17,6 +17,8 @@ const TV = () => {
       const [isShuttingDown, setIsShuttingDown] = useState(false);
       const [isFilesOpen, setIsFilesOpen] = useState(false);
       const [aboveWindow, setAboveWindow] = useState(null);
+      const [monitorHeight, setMonitorHeight] = useState(null)
+      const monitorRef = useRef(null)
       let navigate = useNavigate();
       const handlePowerOff = () => {
         setIsOn(!isOn);
@@ -37,6 +39,18 @@ const TV = () => {
         }
         setAboveWindow(app);
     }
+    useEffect(()=>{
+        const handleResize = () => {
+            setMonitorHeight(monitorRef.current.offsetHeight);
+        }
+
+        window.addEventListener('resize', handleResize);
+        setMonitorHeight(monitorRef.current.offsetHeight)
+
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        }
+    },[])
 return (
     <>
        <div id="container">
@@ -49,16 +63,16 @@ return (
                 }
                 {
                     isOn | !isShuttingDown && (
-                        <motion.div id="monitorscreen" className='relative' initial={{ opacity: 0, scale: 0.8 }}
+                        <motion.div id="monitorscreen" ref={monitorRef} className='relative' initial={{ opacity: 0, scale: 0.8 }}
                             animate={{
                             opacity: isOn ? 1 : 0,
                             scale: isOn ? 1 : 0.8,
                             transition: { duration: 0.8 },
                             }}>
                 
-                        <div className="flex justify-center min-h-screen bg-gray-900 pt-[2rem] md:pt-[4rem] lg:pt-[8rem] relative">
+                        <div className="flex flex-col items-center bg-gray-900 relative" style={{minHeight: monitorHeight}}>
                         <Taskbar />
-                        <div className='flex flex-col gap-4 absolute left-4 top-16'>
+                        <div className='flex flex-col gap-4 absolute left-4 top-16 z-[9]'>
                             <div className='flex flex-col items-center justify-center cursor-pointer' onClick={()=>handleAppOpen('terminal')}>
                                 <img src={terminal_img} alt="terminal" className='w-[4rem]'/>
                                 <span className='text-gray-300'>Terminal</span>
@@ -72,14 +86,16 @@ return (
                                 <span className='text-gray-300'>ShutDown</span>
                             </div>
                         </div>
-                        {isTerminalOpen && (
-                           <Terminal setIsTerminalOpen={setIsTerminalOpen} className={`${aboveWindow === 'terminal' ? 'z-index-10' : 'z-index-1'}`} setAboveWindow={setAboveWindow}/>
-                        )}
-                        {
-                            isFilesOpen && (
-                                <Files setIsFilesOpen={setIsFilesOpen} className={`${aboveWindow === 'files' ? 'z-index-10' : 'z-index-1'}`} setAboveWindow={setAboveWindow}/>
-                            )
-                        }
+                        <div className='flex-grow w-full relative flex items-center justify-center'>
+                            {isTerminalOpen && (
+                            <Terminal setIsTerminalOpen={setIsTerminalOpen} className={`${aboveWindow === 'terminal' ? 'z-index-10' : 'z-index-1'}`} setAboveWindow={setAboveWindow}/>
+                            )}
+                            {
+                                isFilesOpen && (
+                                    <Files setIsFilesOpen={setIsFilesOpen} className={`${aboveWindow === 'files' ? 'z-index-10' : 'z-index-1'}`} setAboveWindow={setAboveWindow}/>
+                                )
+                            }
+                        </div>
                     </div>
                  
 

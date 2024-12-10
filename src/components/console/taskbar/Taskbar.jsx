@@ -11,7 +11,7 @@ const Taskbar = () => {
     return () => clearInterval(timer);
   }, []);
   return (
-    <div className="absolute top-0 left-0 w-full bg-gray-800 text-white shadow-md z-50">
+    <div className="top-0 left-0 h-[3rem] w-full bg-gray-800 text-white shadow-md z-50">
     <div className="flex items-center justify-between p-2 max-w-screen-xl mx-auto">
       {/* Left side: Application icons (like Ubuntu dock) */}
       <div className="flex items-center space-x-4">
@@ -30,7 +30,7 @@ const Taskbar = () => {
 
       {/* Center: Application Title or Workspace switcher */}
       <div className="flex-1 text-center">
-        <span className="text-sm font-semibold">Umer's Ubuntu</span>
+        <span className="text-sm font-semibold">Umer's Linux</span>
       </div>
 
       {/* Right side: System tray icons */}
@@ -52,7 +52,7 @@ const Taskbar = () => {
         </button>
 
         {/* Clock */}
-        <div className="text-sm font-semibold">
+        <div className="text-sm font-semibold min-w-[5rem]">
           {time}
         </div>
       </div>
