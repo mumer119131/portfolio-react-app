@@ -47,6 +47,7 @@ const Settings = ({setAboveWindow, setIsOpen, className, setBackgroundColor }) =
               <HexColorPicker onChange={handleBackgroundLight} />
               <div className='flex gap-2'>
                 <button onClick={()=>handleBackgroundLight("#fff")} className='bg-gray-800 px-4 py-2 rounded-lg my-2'>Default</button>
+                <button onClick={()=>handleBackgroundLight("")} className='bg-gray-800 px-4 py-2 rounded-lg my-2'>Off</button>
               </div>
           </div>
           
@@ -56,6 +57,7 @@ const Settings = ({setAboveWindow, setIsOpen, className, setBackgroundColor }) =
               <HexColorPicker onChange={handleBackgroundLight2} />
               <div className='flex gap-2'>
                 <button onClick={()=>handleBackgroundLight2("#fff")} className='bg-gray-800 px-4 py-2 rounded-lg my-2'>Default</button>
+                <button onClick={()=>handleBackgroundLight2("")} className='bg-gray-800 px-4 py-2 rounded-lg my-2'>Off</button>
               </div>
           </div>
 

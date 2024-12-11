@@ -8,7 +8,7 @@ const Terminal = ({setIsTerminalOpen, className, setAboveWindow}) => {
       const [currentCommandIndex, setCurrentCommandIndex] = useState(0);
       const inputRef = React.useRef(null);
       const [output, setOutput] = useState(initialConsoleText);
-      
+      const monitorScreenRef = React.useRef(null);
       const files = ["about_me.txt", "contact_me.txt", "projects.txt", "how_to_hack_nasa.txt"];
     const handleCommand = (e) => {
         if (e.key === "Enter") {
@@ -65,6 +65,7 @@ const Terminal = ({setIsTerminalOpen, className, setAboveWindow}) => {
         setAboveWindow("terminal");
         inputRef.current.focus();
       }
+      
       useEffect(() => {
         inputRef.current.focus();
       }, []);
@@ -74,6 +75,7 @@ const Terminal = ({setIsTerminalOpen, className, setAboveWindow}) => {
             <div
             onClick={onAppClick}
             id="monitorscreen"
+            ref={monitorScreenRef}
             className="scrollbar p-4 h-96 overflow-y-auto font-mono font-mono-imp text-sm bg-gray-900 !overflow-auto"
             >
             {output.map((line, index) => (

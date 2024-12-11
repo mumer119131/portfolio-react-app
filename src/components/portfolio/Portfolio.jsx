@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import './portfolio.css'
 import LoadingState from './LoadingState/LoadingState'
-
+import { Tilt } from 'react-tilt'
 
 const Portfolio = () => {
   const [projects, setProjects] = React.useState([])
@@ -81,7 +81,7 @@ const Portfolio = () => {
         {
           (!isLoading && projects) ? projects.map(({ id, img, web_name, details, github_link, live_preview }) => {
             return (
-              <div className="portfolio__item" key={id} data-aos='zoom-in-up'>
+              <Tilt className="portfolio__item" key={id} data-aos='zoom-in-up'>
                 <img src={img} alt="" />
                 <h3>{web_name}</h3>
                 <p className='flex-grow'>{details}</p>
@@ -89,7 +89,7 @@ const Portfolio = () => {
                   {github_link && <a href={github_link} target="_blank" className='btn flex-grow whitespace-nowrap' rel="noreferrer">Source Code</a>}
                   {live_preview && <a href={live_preview} target="_blank" className='btn btn__primary flex-grow whitespace-nowrap' rel="noreferrer">Live Preview</a>}
                 </div>
-              </div>
+              </Tilt>
 
             )
           }) : <LoadingState />
