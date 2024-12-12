@@ -101,9 +101,9 @@ const Ground = () => {
   
     useFrame(() => {
       // Ensure that the ref is properly defined before proceeding
-      if (!ref.current) return;
+      if (!ref.current || !cameraRef.current) return;
   
-      const { position } = ref.current;
+      const position = ref.current.position;
   
       // Set speed based on running state
       let currentSpeed = isRunning ? 10 : 5;
@@ -120,12 +120,12 @@ const Ground = () => {
         force[2] -= Math.cos(rotation.current.y) * currentSpeed;
       }
       if (movement.left) {
-        force[0] -= Math.cos(rotation.current.y) * currentSpeed;
-        force[2] += Math.sin(rotation.current.y) * currentSpeed;
-      }
-      if (movement.right) {
         force[0] += Math.cos(rotation.current.y) * currentSpeed;
         force[2] -= Math.sin(rotation.current.y) * currentSpeed;
+      }
+      if (movement.right) {
+        force[0] -= Math.cos(rotation.current.y) * currentSpeed;
+        force[2] += Math.sin(rotation.current.y) * currentSpeed;
       }
   
       // Apply force to simulate rolling
@@ -136,21 +136,23 @@ const Ground = () => {
         setVelocityY(5); // Jump strength
         setIsJumping(false);
       }
-  
+      api.velocity.set(force[0], velocityY, force[2]);
+      
+
       // Apply gravity
       setVelocityY((prev) => prev - 0.01);
-      api.velocity.set(force[0], velocityY, force[2]);
-  
+      
+      // console.log(force[0], velocityY, force[2]);
       // Update camera to follow the sphere from a fixed TPP offset
-      if (cameraRef.current) {
-        cameraRef.current.position.set(
-          position.x - Math.sin(rotation.current.y) * 5,
-          position.y + 3,
-          position.z - Math.cos(rotation.current.y) * 5
-        );
-        cameraRef.current.lookAt(position.x, position.y + 1, position.z);
-      }
+      const offset = 5; // Adjust this value for the desired follow distance
+      const verticalOffset = 3; // Adjust the vertical position of the camera
   
+      cameraRef.current.position.set(
+        position.x - Math.sin(rotation.current.y) * offset,
+        position.y + verticalOffset,
+        position.z - Math.cos(rotation.current.y) * offset
+      );
+      cameraRef.current.lookAt(position.x, position.y + 1, position.z); // Look at the sphere from a slightly above position
       // Rotate the sphere to face the direction of movement
       ref.current.rotation.y = rotation.current.y;
     });
@@ -162,6 +164,8 @@ const Ground = () => {
       </mesh>
     );
   };
+  
+   
   
   
   

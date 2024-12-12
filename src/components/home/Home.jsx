@@ -8,12 +8,12 @@ import { IoTerminal } from "react-icons/io5";
 
 const Home = () => {
   const CROWN_REF = useRef()
-
   function scrollDown(){
     window.scrollTo(0,document.body.scrollHeight)
   }
+  
   return (
-    <div className="container home__container">
+    <div className="container home__container w-screen h-screen flex items-center justify-center transition-all">
       <div className="home__content__container">
         <small>Hello I'm</small>
         <h2><img src={CROWN_IMG} alt="" ref={CROWN_REF}/> Muhammad Umer</h2>

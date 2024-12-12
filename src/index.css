@@ -4,6 +4,9 @@
 
 
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600&display=swap');
+@import url('https://fonts.cdnfonts.com/css/bimbo');
+@import url('https://fonts.cdnfonts.com/css/devil-breeze');
+
 *{
   margin: 0;
   padding: 0;
@@ -30,6 +33,13 @@
 html{
   scroll-behavior: smooth;
 }
+
+.font-devil{
+  font-family: "devil breeze";
+}
+.font-bimbo{
+  font-family: 'Bimbo', sans-serif;
+}
 .container{
   padding: 4rem;
   text-align: center;
@@ -49,7 +59,11 @@ html{
   color: var(--color-secondry);
 }
 body{
-  background-color: var(--color-primary);
+  /* background-color: var(--color-primary); */
+  background-color: #1B1B1B;
+  background-image: url("../src/assets/bg.png"),repeating-linear-gradient(
+        to right, transparent 0 500px, #73814B33 500px 501px
+    );
   color: var(--color-white);
 }
 
@@ -74,6 +88,30 @@ body{
   letter-spacing: 1px;
 }
 
+
+.sign__white::after{
+  content: '';
+  background: url("../src/assets/signs/sign-white.png") no-repeat;
+  background-position: center;
+  background-size: cover;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+  width: 100px;
+  height: 10px;
+  transform: translateX(50%);
+}
+.name-character{
+  transition: 0.1s linear all;
+  display: inline-block;
+  cursor: pointer;
+}
+.dot:hover{
+  border-radius: 50%;
+}
+.name-character:hover{
+  transform: scaleX(-1);
+}
 img{
   display: inline !important;
 }

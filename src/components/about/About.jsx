@@ -48,23 +48,7 @@ const About = () => {
       <p>Get to know more</p>
       <h2>About Me</h2>
       <div className="about__desc">
-        <div className="designer__desc" data-aos ='slide-right'>
-          <h2>Designer</h2>
-          <p>"I am a graphic designer with over 3 years of Experience. I had worked as a freelancer and full time graphic designer with alot of companies."</p>
-          <div className="technology__items">
-            <SiAdobephotoshop size={logoSize}/>
-            <SiAdobeillustrator size={logoSize}/>
-            <CgFigma size={logoSize}/>
-            <SiAdobexd size={logoSize}/>
-          </div>
-        </div>
-        <div className="doodle__container" data-aos='fade-up'>
-          <img src={BRAIN_IMG} alt="" id='anchor'/>
-          <div className="eyes">
-            <img src={EYES_IMG} alt="" className='eye'/>
-            <img src={EYES_IMG} alt="" className='eye'/>
-          </div>
-        </div>
+        
         <div className="coder__desc" data-aos='slide-left'>
           <h2>Programmer</h2>
           <p>"I am fullstack Web Developer with over 4+ year of Experience. I had worked for some multinational companies and also a freelancer."</p>
@@ -74,6 +58,23 @@ const About = () => {
             <IoLogoJavascript size={logoSize}/>
             <FaReact size={logoSize}/>
             <SiFlask size={logoSize}/>
+          </div>
+        </div>
+        <div className="doodle__container" data-aos='fade-up'>
+          <img src={BRAIN_IMG} alt="" id='anchor'/>
+          <div className="eyes">
+            <img src={EYES_IMG} alt="" className='eye'/>
+            <img src={EYES_IMG} alt="" className='eye'/>
+          </div>
+        </div>
+        <div className="designer__desc" data-aos ='slide-right'>
+          <h2>Designer</h2>
+          <p>"I am a graphic designer with over 3 years of Experience. I had worked as a freelancer and full time graphic designer with alot of companies."</p>
+          <div className="technology__items">
+            <SiAdobephotoshop size={logoSize}/>
+            <SiAdobeillustrator size={logoSize}/>
+            <CgFigma size={logoSize}/>
+            <SiAdobexd size={logoSize}/>
           </div>
         </div>
       </div>
