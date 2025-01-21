@@ -81,16 +81,21 @@ const Portfolio = () => {
         {
           (!isLoading && projects) ? projects.map(({ id, img, web_name, details, github_link, live_preview }) => {
             return (
-              <Tilt className="portfolio__item" key={id} data-aos='zoom-in-up'>
-                <img src={img} alt="" />
-                <h3>{web_name}</h3>
-                <p className='flex-grow'>{details}</p>
-                <div className="btn__container w-[80%] m-auto">
-                  {github_link && <a href={github_link} target="_blank" className='btn flex-grow whitespace-nowrap' rel="noreferrer">Source Code</a>}
-                  {live_preview && <a href={live_preview} target="_blank" className='btn btn__primary flex-grow whitespace-nowrap' rel="noreferrer">Live Preview</a>}
-                </div>
+              <Tilt className="portfolio__item group" key={id} data-aos='zoom-in-up'>
+              <div className='relative'>
+                <img src={img} alt="" className='' />
+                {/* <a href={github_link} target="_blank" className='border border-gray-300 px-4 py-2 rounded-full check__btn group-hover:!block absolute left-1/2 top-1/2 translate-x-[-50%] translate-y-[-50%]' rel="noreferrer">Source Code</a> */}
+              </div>
+              <h3>{web_name}</h3>
+              <p className='flex-grow'>{details}</p>
+              <div className="btn__container w-[80%] m-auto">
+                {github_link && <a href={github_link} target="_blank" className='btn flex-grow whitespace-nowrap' rel="noreferrer">Source Code</a>}
+                {live_preview && <a href={live_preview} target="_blank" className='btn btn__primary flex-grow whitespace-nowrap' rel="noreferrer">Live Preview</a>}
+              </div>
+              <div className="btn__container w-[80%] mx-auto !mb-2 !mt-0 !hidden group-hover:!flex transition-all">
+                {/* <a href={github_link} target="_blank" className='btn flex-grow whitespace-nowrap' rel="noreferrer">Source Code</a> */}
+              </div>
               </Tilt>
-
             )
           }) : <LoadingState />
         } 
