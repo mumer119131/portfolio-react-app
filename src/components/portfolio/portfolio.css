@@ -51,3 +51,14 @@
 .btn__container a {
     text-decoration: none;
 }
+
+.check__btn {
+    animation: backgroundColor 2s infinite;
+    transition: 1s ease all;
+    background: linear-gradient(90deg, transparent 0%, transparent 100%);
+}
+
+.check__btn:hover {
+    background: linear-gradient(90deg, white 100%, transparent 0%);
+    color: gray;
+}

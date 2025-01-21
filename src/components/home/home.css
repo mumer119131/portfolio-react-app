@@ -105,6 +105,19 @@ body::-webkit-scrollbar{
     color: white;
 }
 
+
+.pop-animation{
+    animation: pop 1s ease infinite alternate;
+}
+
+@keyframes pop {
+    0%{
+        transform: scale(1);
+    }100%{
+        transform: scale(1.04);
+    }
+}
+
 /* ==================MEDIA QURIES (MEDIUM DEVICES)=============== */
 
 @media screen and (max-width:1024px){
