@@ -49,7 +49,11 @@ html{
   color: var(--color-secondry);
 }
 body{
-  background-color: var(--color-primary);
+  background-color: #1B1B1B;
+  background-image: url("../src/assets/bg.png"),repeating-linear-gradient(
+        to right, transparent 0 500px, #73814B33 500px 501px
+    );
+    
   color: var(--color-white);
 }
 

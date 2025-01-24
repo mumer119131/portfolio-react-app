@@ -11,6 +11,15 @@ body::-webkit-scrollbar{
     left: 0.8rem;
     animation: rotateCrown 2s infinite;
 }
+.grid-bg {
+    position: absolute;
+  inset: 0;
+  height: 100%;
+  width: 100%;
+  background-image: linear-gradient(to right, #80808012 1px, transparent 1px),
+    linear-gradient(to bottom, #80808012 1px, transparent 1px);
+  background-size: 24px 24px;
+  }
 @keyframes rotateCrown {
     0%{
         transform: rotate(0deg);
@@ -104,7 +113,7 @@ body::-webkit-scrollbar{
 .scroll__container p:hover{
     color: white;
 }
-
+.cls-1{fill:#fff;}
 
 .pop-animation{
     animation: pop 1s ease infinite alternate;

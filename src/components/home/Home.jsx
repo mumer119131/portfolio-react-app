@@ -5,6 +5,8 @@ import CROWN_IMG from '../../assets/doodles/crown.png'
 import CV from '../../assets/cv.pdf'
 import { Link } from 'react-router'
 import { IoTerminal } from "react-icons/io5";
+import Arrow from '../arrow/Arrow'
+
 
 const Home = () => {
   const CROWN_REF = useRef()
@@ -23,7 +25,8 @@ const Home = () => {
             <a href={CV} download className='btn'>Download CV</a>
             <a href='#contact' className='btn btn__primary'>Let's Talk</a>
           </div>
-          <div>
+          <div className='relative'>
+            <Arrow />
             <Link to="/console" className='btn w-full block no-underline btn__primary pop-animation'><IoTerminal className='inline relative bottom-[1px]'/>&nbsp;&nbsp;Access Console</Link>
           </div>
         </div>
