@@ -50,7 +50,7 @@ const About = () => {
       <div className="about__desc">
         
         <div className="coder__desc" data-aos='slide-left'>
-          <h2>Programmer</h2>
+          <h2>Frontend</h2>
           <p>"I am fullstack Web Developer with over 4+ year of Experience. I had worked for some multinational companies and also a freelancer."</p>
           <div className="technology__items">
             <DiPython size={logoSize}/>
@@ -68,7 +68,7 @@ const About = () => {
           </div>
         </div>
         <div className="designer__desc" data-aos ='slide-right'>
-          <h2>Designer</h2>
+          <h2>Backend</h2>
           <p>"I am a graphic designer with over 3 years of Experience. I had worked as a freelancer and full time graphic designer with alot of companies."</p>
           <div className="technology__items">
             <SiAdobephotoshop size={logoSize}/>
