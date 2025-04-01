@@ -2,16 +2,22 @@ import React from 'react'
 import './about.css'
 import BRAIN_IMG from '../../assets/doodles/brain_without_eyes.png'
 import EYES_IMG from '../../assets/doodles/eye_ball.png'
-import {SiAdobephotoshop} from 'react-icons/si'
-import {SiAdobeillustrator} from 'react-icons/si'
-import {CgFigma} from 'react-icons/cg'
-import {SiAdobexd} from 'react-icons/si'
-import {DiPython} from 'react-icons/di'
-import {SiDjango} from 'react-icons/si'
-import {IoLogoJavascript} from 'react-icons/io'
-import {FaReact} from 'react-icons/fa'
-import {SiFlask} from 'react-icons/si'
 import { useEffect } from 'react'
+
+// frontend
+import {FaReact} from 'react-icons/fa'
+import {IoLogoJavascript} from 'react-icons/io'
+import { RiNextjsFill } from "react-icons/ri";
+import { FaAngular } from "react-icons/fa";
+
+
+// backend
+import {DiPython} from 'react-icons/di'
+import {SiFlask} from 'react-icons/si'
+import {SiDjango} from 'react-icons/si'
+import { SiExpress } from "react-icons/si";
+import { BiLogoNodejs } from "react-icons/bi";
+
 
 const About = () => {
   
@@ -51,13 +57,13 @@ const About = () => {
         
         <div className="coder__desc" data-aos='slide-left'>
           <h2>Frontend</h2>
-          <p>"I am fullstack Web Developer with over 4+ year of Experience. I had worked for some multinational companies and also a freelancer."</p>
+          <p>"I have worked as a Frontend Developer for 5+ years, in creating dynamic and responsive user interfaces using modern technologies."</p>
           <div className="technology__items">
-            <DiPython size={logoSize}/>
-            <SiDjango size={logoSize}/>
-            <IoLogoJavascript size={logoSize}/>
             <FaReact size={logoSize}/>
-            <SiFlask size={logoSize}/>
+            <RiNextjsFill size={logoSize}/>
+            <FaAngular size={logoSize}/>
+            <IoLogoJavascript size={logoSize}/>
+            <SiDjango size={logoSize}/>
           </div>
         </div>
         <div className="doodle__container" data-aos='fade-up'>
@@ -69,12 +75,13 @@ const About = () => {
         </div>
         <div className="designer__desc" data-aos ='slide-right'>
           <h2>Backend</h2>
-          <p>"I am a graphic designer with over 3 years of Experience. I had worked as a freelancer and full time graphic designer with alot of companies."</p>
+          <p>"I have worked as a Backend Developer for over 4+ years, gaining extensive experience in building robust and scalable server-side applications."</p>
           <div className="technology__items">
-            <SiAdobephotoshop size={logoSize}/>
-            <SiAdobeillustrator size={logoSize}/>
-            <CgFigma size={logoSize}/>
-            <SiAdobexd size={logoSize}/>
+            <DiPython size={logoSize}/>
+            <SiFlask size={logoSize}/>
+            <SiExpress size={logoSize}/>
+            <BiLogoNodejs size={logoSize}/>
+            <SiDjango size={logoSize}/>
           </div>
         </div>
       </div>
