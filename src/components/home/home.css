@@ -40,16 +40,18 @@ body::-webkit-scrollbar{
 }
 .img__container{
     margin-top: 3rem;
-    background-color: var(--color-secondry);
+    /* background-color: var(--color-secondry); */
     width: 20rem;
     border-radius: 16px 16px 0 0;
     padding-top: 1rem;
-    -webkit-box-shadow: 3px 3px 20px 3px #fde74c;
-    -moz-box-shadow: 3px 3px 20px 3px #fde74c;
-    box-shadow: 3px 3px 20px 3px #fde74c;
     position: relative;
     transition: var(--transition);
     bottom: 0;
+}
+.img__container img{
+    -mox-filter: drop-shadow(3px 3px 20px #fde74c);
+    -webkit-filter: drop-shadow(3px 3px 20px #fde74c);
+    filter: drop-shadow(3px 3px 20px #fde74c);
 }
 .img__container:hover{
     bottom: 1rem;
