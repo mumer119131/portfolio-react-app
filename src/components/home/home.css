@@ -53,9 +53,9 @@ body::-webkit-scrollbar{
     -webkit-filter: drop-shadow(3px 3px 20px #fde74c);
     filter: drop-shadow(3px 3px 20px #fde74c);
 }
-.img__container:hover{
+/* .img__container:hover{
     bottom: 1rem;
-}
+} */
 .img__container img{
     width: 100%;
     object-fit: cover;
