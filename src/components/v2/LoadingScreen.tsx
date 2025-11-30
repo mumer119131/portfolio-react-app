@@ -68,7 +68,7 @@ const LoadingScreen: React.FC = () => {
 
       {/* Top Bar */}
       <div className="flex justify-between items-start font-inter text-xs uppercase tracking-widest opacity-50 loading-text">
-        <span>Portfolio V2</span>
+        <span>Portfolio Muhammad Umer</span>
         <span>© 2025</span>
       </div>
 
