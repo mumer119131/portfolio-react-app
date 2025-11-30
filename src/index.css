@@ -30,24 +30,7 @@
 html{
   scroll-behavior: smooth;
 }
-.container{
-  padding: 4rem;
-  text-align: center;
-  max-width: 1440px;
-  position: relative;
-  left: 50%;
-  transform: translateX(-50%);
-  overflow: hidden;
-}
-.container > p{
-  font-weight: 300;
-  color: var(--color-light);
-  text-transform: capitalize;
-}
-.container h2{
-  font-size: 2rem;
-  color: var(--color-secondry);
-}
+
 body{
   background-color: #0a0a0a;
   /* background-image: url("../src/assets/bg.png"),repeating-linear-gradient(

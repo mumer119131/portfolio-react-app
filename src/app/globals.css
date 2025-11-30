@@ -28,26 +28,6 @@ html {
   scroll-behavior: smooth;
 }
 
-.container {
-  padding: 4rem;
-  text-align: center;
-  max-width: 1440px;
-  position: relative;
-  left: 50%;
-  transform: translateX(-50%);
-  overflow: hidden;
-}
-
-.container > p {
-  font-weight: 300;
-  color: var(--color-light);
-  text-transform: capitalize;
-}
-
-.container h2 {
-  font-size: 2rem;
-  color: var(--color-secondry);
-}
 
 body {
   background-color: #0a0a0a;
@@ -189,6 +169,32 @@ img {
   height: 40px;
 }
 
+
+@keyframes spin-slow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes spin-medium {
+  from {
+    transform: rotate(360deg);
+  }
+  to {
+    transform: rotate(0deg);
+  }
+}
+
+.animate-spin-slow {
+  animation: spin-slow 15s linear infinite;
+}
+
+.animate-spin-medium {
+  animation: spin-medium 10s linear infinite;
+}
 @keyframes pulse {
   0% {
     background-color: #818181;

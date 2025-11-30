@@ -1,103 +1,234 @@
 'use client';
 
-import React, { useRef } from 'react';
-import './home.css';
+import React, { useEffect, useRef } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
+import { gsap } from 'gsap';
+import { IoTerminal, IoLogoGithub, IoLogoLinkedin, IoMail, IoCodeSlash } from 'react-icons/io5';
+import { SiUpwork } from 'react-icons/si';
+import { BsArrowReturnRight } from 'react-icons/bs';
+
+// Assuming these assets exist in your project based on your snippet
 import MY_IMAGE from '@/assets/my.png';
 import CROWN_IMG from '@/assets/doodles/crown.png';
-import Link from 'next/link';
-import { IoTerminal } from 'react-icons/io5';
-import Arrow from '../arrow/Arrow';
 
 const Home: React.FC = () => {
-  const CROWN_REF = useRef<HTMLImageElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const crownRef = useRef<HTMLImageElement>(null);
+  const heroImageRef = useRef<HTMLDivElement>(null);
+  const badgeRef = useRef<HTMLAnchorElement>(null);
 
-  function scrollDown() {
-    window.scrollTo(0, document.body.scrollHeight);
-  }
+  // Scroll to bottom function
+  const scrollDown = () => {
+    window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+  };
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      // 1. Initial Entrance Timeline
+      const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+
+      // Elements visibility reset (in case of re-renders)
+      gsap.set(['.hero-text', '.hero-btn', '.side-bar-element'], { autoAlpha: 0, y: 30 });
+      gsap.set(heroImageRef.current, { autoAlpha: 0, scale: 0.9 });
+      gsap.set(badgeRef.current, { autoAlpha: 0, x: -20 });
+
+      tl.to(heroImageRef.current, { autoAlpha: 1, scale: 1, duration: 1 })
+        .to('.hero-text', { autoAlpha: 1, y: 0, stagger: 0.1, duration: 0.8 }, '-=0.5')
+        .to('.hero-btn', { autoAlpha: 1, y: 0, stagger: 0.1, duration: 0.6 }, '-=0.4')
+        .to(badgeRef.current, { autoAlpha: 1, x: 0, duration: 0.6 }, '-=0.4')
+        .to('.side-bar-element', { autoAlpha: 1, y: 0, stagger: 0.1, duration: 0.8 }, '-=0.6');
+
+      // 2. Continuous Crown Rotation
+      if (crownRef.current) {
+        gsap.to(crownRef.current, {
+          rotation: 360,
+          duration: 20,
+          repeat: -1,
+          ease: 'linear',
+        });
+      }
+
+      // 3. Floating Animation for Upwork Badge
+      if (badgeRef.current) {
+        gsap.to(badgeRef.current, {
+          y: -10,
+          duration: 2,
+          repeat: -1,
+          yoyo: true,
+          ease: 'sine.inOut',
+        });
+      }
+
+      // 4. Floating Animation for Hero Image Background
+      gsap.to('.hero-blob', {
+        scale: 1.1,
+        rotation: 10,
+        duration: 8,
+        repeat: -1,
+        yoyo: true,
+        ease: 'sine.inOut',
+      });
+
+    }, containerRef);
+
+    return () => ctx.revert();
+  }, []);
 
   return (
-    <div className="container home__container">
-      <div className="home__content__container">
-        <small>Hello I&apos;m</small>
-        <h2>
-          <Image src={CROWN_IMG} alt="" ref={CROWN_REF as any} /> Muhammad Umer
-        </h2>
-        <p>- FullStack Developer -</p>
-        <div>
-          <div className="btn__container">
-            <a href="/cv.pdf" download className="btn">
-              Download CV
+    <section 
+      ref={containerRef} 
+      className="relative min-h-screen w-full bg-slate-950 overflow-hidden flex items-center justify-center py-20 lg:py-0"
+    >
+      {/* --- Background Elements --- */}
+      {/* Grid Pattern */}
+      <div className="absolute inset-0 w-full h-full bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]"></div>
+      
+      {/* Ambient Glows */}
+      <div className="absolute top-[-10%] left-[-10%] w-[500px] h-[500px] bg-blue-600/20 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute bottom-[-10%] right-[-10%] w-[500px] h-[500px] bg-purple-600/20 rounded-full blur-[120px] pointer-events-none" />
+
+      {/* --- Main Content Container --- */}
+      <div className="container mx-auto px-6 relative z-10 flex flex-col-reverse lg:flex-row items-center justify-between gap-12 lg:gap-6">
+        
+        {/* Left: Text Content */}
+        <div className="flex flex-col items-center lg:items-start text-center lg:text-left max-w-2xl">
+          <small className="hero-text text-blue-400 font-medium tracking-widest uppercase mb-4 block">
+            Hello, I&apos;m
+          </small>
+          
+          <h1 className="hero-text relative text-5xl sm:text-6xl md:text-7xl font-bold text-slate-100 leading-tight mb-2">
+            <span className="relative inline-block">
+              <span className="relative z-10">Muhammad</span>
+              {/* Crown Image positioned absolutely on the name */}
+              {/* <div className="absolute -top-12 -left-8 w-16 h-16 sm:w-20 sm:h-20 pointer-events-none z-20">
+                 <Image 
+                   src={CROWN_IMG} 
+                   alt="Crown" 
+                   ref={crownRef}
+                   className="w-full h-full object-contain drop-shadow-[0_0_15px_rgba(253,231,76,0.5)]"
+                 />
+              </div> */}
+            </span>
+            <br />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500">
+              Umer
+            </span>
+          </h1>
+
+          <p className="hero-text text-lg sm:text-xl text-slate-400 mt-4 mb-8 font-mono">
+            - FullStack Developer -
+          </p>
+
+          {/* Action Buttons */}
+          <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
+            <a 
+              href="/cv.pdf" 
+              download 
+              className="hero-btn group relative px-8 py-3 rounded-full bg-slate-800 text-white font-medium border border-slate-700 overflow-hidden transition-all hover:border-blue-500 hover:shadow-[0_0_20px_rgba(59,130,246,0.3)]"
+            >
+              <div className="absolute inset-0 bg-blue-600/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
+              <span className="relative z-10">Download CV</span>
             </a>
-            <a href="#contact" className="btn btn__primary">
+            
+            <a 
+              href="#contact" 
+              className="hero-btn group px-8 py-3 rounded-full bg-blue-600 text-white font-medium transition-all hover:bg-blue-500 hover:shadow-[0_0_20px_rgba(37,99,235,0.4)] hover:scale-105"
+            >
               Let&apos;s Talk
             </a>
           </div>
-          <div className="relative">
-            <Arrow />
+
+          {/* Console Link */}
+          <div className="hero-btn mt-8 relative group cursor-pointer">
+            <div className="absolute -left-6 top-1/2 -translate-y-1/2 text-slate-600 text-2xl hidden lg:block group-hover:text-blue-400 transition-colors">
+              <BsArrowReturnRight />
+            </div>
             <Link
               href="/console"
-              className="btn w-full block no-underline btn__primary pop-animation"
+              className="flex items-center gap-3 px-6 py-3 bg-black/40 backdrop-blur-md border border-slate-800 rounded-xl text-slate-300 transition-all hover:border-green-500/50 hover:text-green-400 hover:shadow-[0_0_15px_rgba(74,222,128,0.1)]"
             >
-              <IoTerminal className="inline relative bottom-[1px]" />
-              &nbsp;&nbsp;Access Console
+              <IoTerminal className="text-xl" />
+              <span className="font-mono text-sm">Access Terminal / Console</span>
             </Link>
           </div>
         </div>
-        <div className="img__container">
-          <Image src={MY_IMAGE} alt="Muhammad Umer" />
+
+        {/* Right: Image & Floating Badge */}
+        <div ref={heroImageRef} className="relative w-full max-w-md lg:max-w-lg aspect-square flex justify-center items-center">
+          {/* Decorative Blob behind image */}
+          <div className="hero-blob absolute inset-0 bg-gradient-to-tr from-blue-600/20 to-purple-600/20 rounded-full blur-3xl"></div>
+          
+          {/* Main Image Container */}
+          <div className="relative z-10 w-[80%] h-[80%] rounded-[2rem] overflow-hidden border border-white/10 shadow-2xl bg-slate-900/50 backdrop-blur-sm group">
+            <Image 
+              src={MY_IMAGE} 
+              alt="Muhammad Umer" 
+              fill
+              className="object-cover transition-transform duration-700 group-hover:scale-110"
+              priority
+            />
+            {/* Optional Overlay on hover */}
+            <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent opacity-60"></div>
+          </div>
+
+          {/* Floating Upwork Badge */}
           <a
+            ref={badgeRef}
             href="https://www.upwork.com/freelancers/~018f0a3f855d9f92d9"
             target="_blank"
             rel="noreferrer"
-            className="h-max rounded-full flex justify-center items-center absolute -bottom-5 md:top-0 flex-col md:flex-row -right-2 text-gray-300 md:translate-x-[50%] cursor-pointer hover:scale-110 transition-all duration-300"
+            className="absolute -bottom-6 -right-4 sm:bottom-10 sm:-right-8 bg-white/10 backdrop-blur-md border border-white/20 p-4 rounded-2xl flex items-center gap-4 shadow-xl cursor-pointer hover:bg-white/20 transition-colors z-20 max-w-[200px]"
           >
-            <svg
-              className="h-12 w-12"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              aria-hidden="true"
-              viewBox="0 0 28 28"
-              role="img"
-            >
-              <path
-                fill="#1F57C3"
-                d="M12 1.155a4 4 0 014 0l8.124 4.69a4 4 0 012 3.464v9.382a4 4 0 01-2 3.464L16 26.845a4 4 0 01-4 0l-8.124-4.69a4 4 0 01-2-3.464V9.309a4 4 0 012-3.464L12 1.155z"
-              ></path>
-              <path
-                stroke="#fff"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="1.5"
-                d="M14.761 7.542l1.188 3.201 3.285.184a.78.78 0 01.448.173c.13.104.226.247.277.41a.9.9 0 01.01.504.858.858 0 01-.261.422L17.15 14.6l.854 3.328a.907.907 0 01-.025.507.857.857 0 01-.291.404.785.785 0 01-.919.02L14 16.984l-2.764 1.862a.784.784 0 01-.916-.012.855.855 0 01-.294-.4.906.906 0 01-.031-.505l.847-3.314-2.55-2.18a.858.858 0 01-.26-.421.9.9 0 01.01-.504.853.853 0 01.276-.41.782.782 0 01.448-.173l3.285-.184 1.188-3.201a.86.86 0 01.302-.394.79.79 0 01.918 0 .86.86 0 01.302.394z"
-                clipRule="evenodd"
-              ></path>
-            </svg>
-            <h3 className="text-sm">
-              Top Rated On <u>Upwork</u>
-            </h3>
+            <div className="bg-[#14a800] p-2 rounded-full text-white shadow-lg">
+              <SiUpwork className="text-2xl" />
+            </div>
+            <div>
+              <p className="text-xs text-slate-300 uppercase tracking-wide">Top Rated on</p>
+              <p className="text-sm font-bold text-white">Upwork</p>
+            </div>
           </a>
-        </div>
-        <div className="social__container__home side__bar">
-          <a href="https://github.com/mumer119131" target="_blank" rel="noreferrer">
-            <i className="fa-brands fa-github"></i>
-          </a>
-          <a href="https://www.linkedin.com/in/m-umer-06602821b/" target="_blank" rel="noreferrer">
-            <i className="fa-brands fa-linkedin"></i>
-          </a>
-          <a href="mailto:mumer119131@gmail.com">
-            <i className="fa-brands fa-google" rel="noreferrer"></i>
-          </a>
-          <a href="https://www.linkedin.com/in/dev-umer/" target="_blank" rel="noreferrer">
-            <i className="fa-brands fa-dev"></i>
-          </a>
-        </div>
-        <div className="side__bar scroll__container">
-          <p onClick={scrollDown}>Scroll Down</p>
         </div>
       </div>
-    </div>
+
+      {/* --- Sidebars --- */}
+      
+      {/* Social Links (Left) - Hidden on Mobile */}
+      <div className="hidden lg:flex fixed left-8 bottom-0 flex-col gap-6 items-center z-20">
+        <div className="flex flex-col gap-6">
+          <SocialLink href="https://github.com/mumer119131" icon={<IoLogoGithub />} />
+          <SocialLink href="https://www.linkedin.com/in/m-umer-06602821b/" icon={<IoLogoLinkedin />} />
+          <SocialLink href="mailto:mumer119131@gmail.com" icon={<IoMail />} />
+          <SocialLink href="https://www.linkedin.com/in/dev-umer/" icon={<IoCodeSlash />} />
+        </div>
+        <div className="side-bar-element w-[1px] h-24 bg-slate-600 mt-4"></div>
+      </div>
+
+      {/* Scroll Down (Right) - Hidden on Mobile */}
+      <div className="hidden lg:flex fixed right-8 bottom-0 flex-col gap-8 items-center z-20">
+        <p 
+          onClick={scrollDown} 
+          className="side-bar-element rotate-90 origin-right text-slate-500 hover:text-blue-400 transition-colors cursor-pointer text-sm tracking-widest mb-16"
+        >
+          SCROLL DOWN
+        </p>
+        <div className="side-bar-element w-[1px] h-24 bg-slate-600"></div>
+      </div>
+
+    </section>
   );
 };
+
+// Helper Component for Social Links
+const SocialLink = ({ href, icon }: { href: string; icon: React.ReactNode }) => (
+  <a 
+    href={href} 
+    target="_blank" 
+    rel="noreferrer"
+    className="side-bar-element text-xl text-slate-500 hover:text-blue-400 hover:-translate-y-1 transition-all duration-300"
+  >
+    {icon}
+  </a>
+);
 
 export default Home;

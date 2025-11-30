@@ -1,171 +1,229 @@
-'use client';
-
-import React from 'react';
-import './experience.css';
+import React, { useEffect, useRef } from 'react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ImHtmlFive } from 'react-icons/im';
-import { SiCss3 } from 'react-icons/si';
+import { SiCss3, SiTailwindcss, SiDjango, SiFlask, SiMongodb, SiPython, SiExpress } from 'react-icons/si';
 import { IoLogoJavascript } from 'react-icons/io';
 import { GrReactjs } from 'react-icons/gr';
-import { FaBootstrap } from 'react-icons/fa';
-import { SiTailwindcss } from 'react-icons/si';
+import { FaBootstrap, FaNode } from 'react-icons/fa';
 import { RiNextjsLine } from 'react-icons/ri';
 import { TbBrandReactNative } from 'react-icons/tb';
 
-import { DiPython } from 'react-icons/di';
-import { SiDjango } from 'react-icons/si';
-import { SiFlask } from 'react-icons/si';
-import { SiMongodb } from 'react-icons/si';
+// Register GSAP Plugin
+gsap.registerPlugin(ScrollTrigger);
 
-import Image from 'next/image';
-import BACKEND_IMG from '@/assets/doodles/web.png';
-import FRONTEND_IMG from '@/assets/doodles/person_on_comp.png';
-import { FaNode } from 'react-icons/fa';
-import { SiExpress } from 'react-icons/si';
-
-interface ExperienceData {
+// --- Types & Data ---
+interface SkillData {
   key: string;
   logo: React.ReactNode;
-  exp: string;
-  exp_desc: string;
+  name: string;
+  description: string;
+  color: string; // Added color for individual brand identity on hover
 }
 
-const experience_data_frontend: ExperienceData[] = [
-  {
-    key: '1',
-    logo: <ImHtmlFive />,
-    exp: 'HTML 5',
-    exp_desc:
-      'HTML5 is a markup language used for structuring and presenting content on the World Wide Web.',
-  },
-  {
-    key: '2',
-    logo: <SiCss3 />,
-    exp: 'CSS 3',
-    exp_desc:
-      'CSS is the language we use to style an HTML document. CSS describes how HTML elements should be displayed.',
-  },
-  {
-    key: '7',
-    logo: <RiNextjsLine />,
-    exp: 'NextJs',
-    exp_desc:
-      'Next.js is a React framework that enables functionality such as server-side rendering and generating static websites for React based web applications.',
-  },
-  {
-    key: '3',
-    logo: <IoLogoJavascript />,
-    exp: 'Javascript',
-    exp_desc:
-      'Javascript is used by programmers across the world to create dynamic and interactive web content like applications and browsers.',
-  },
-  {
-    key: '4',
-    logo: <GrReactjs />,
-    exp: 'React',
-    exp_desc:
-      'React is a JavaScript library developed by Facebook which, among other things, was used to build Instagram.com.',
-  },
-  {
-    key: '5',
-    logo: <FaBootstrap />,
-    exp: 'Bootstrap 5',
-    exp_desc: 'Bootstrap is a potent front-end framework used to create modern websites and web apps.',
-  },
-  {
-    key: '6',
-    logo: <SiTailwindcss />,
-    exp: 'Tailwind CSS',
-    exp_desc:
-      "It makes quicker to write and maintain the code of your application. By using this utility-first framework, you don't have to write custom CSS to style your application.",
-  },
-  {
-    key: '8',
-    logo: <TbBrandReactNative />,
-    exp: 'React Native',
-    exp_desc:
-      'React Native is an open-source framework by Facebook for building Android, iOS, Web, and UWP apps using React and native platform features.',
-  },
+const frontendSkills: SkillData[] = [
+  { key: '1', logo: <ImHtmlFive />, name: 'HTML5', description: 'Semantic markup structure', color: '#E34F26' },
+  { key: '2', logo: <SiCss3 />, name: 'CSS3', description: 'Modern responsive styling', color: '#1572B6' },
+  { key: '3', logo: <IoLogoJavascript />, name: 'JavaScript', description: 'Dynamic ES6+ interactions', color: '#F7DF1E' },
+  { key: '4', logo: <GrReactjs />, name: 'React', description: 'Component-based architecture', color: '#61DAFB' },
+  { key: '5', logo: <RiNextjsLine />, name: 'Next.js', description: 'Full-stack React framework', color: '#ffffff' },
+  { key: '6', logo: <SiTailwindcss />, name: 'Tailwind', description: 'Utility-first design system', color: '#06B6D4' },
+  { key: '7', logo: <FaBootstrap />, name: 'Bootstrap', description: 'Rapid UI development', color: '#7952B3' },
+  { key: '8', logo: <TbBrandReactNative />, name: 'React Native', description: 'Cross-platform mobile', color: '#61DAFB' },
 ];
 
-const experience_data_backend: ExperienceData[] = [
-  {
-    key: '1',
-    logo: <DiPython />,
-    exp: 'Python',
-    exp_desc:
-      'Python is a high-level, general-purpose programming language. Its design philosophy emphasizes code readability with the use of significant indentation.',
-  },
-  {
-    key: '2',
-    logo: <SiDjango />,
-    exp: 'Django',
-    exp_desc:
-      'Django is a free and open-source, Python-based web framework that follows the model–template–views architectural pattern.',
-  },
-  {
-    key: '3',
-    logo: <SiFlask />,
-    exp: 'Flask',
-    exp_desc:
-      'Flask is a micro web framework written in Python. It is classified as a microframework because it does not require particular tools or libraries.',
-  },
-  {
-    key: '4',
-    logo: <SiMongodb />,
-    exp: 'MongoDB',
-    exp_desc:
-      'MongoDB is an open source NoSQL database management program. NoSQL is used as an alternative to traditional relational databases.',
-  },
-  {
-    key: '5',
-    logo: <FaNode />,
-    exp: 'NodeJs',
-    exp_desc:
-      "Node.js is an open-source, server-side JavaScript runtime built on Chrome's V8 JavaScript engine, empowering developers to run JavaScript code outside the browser",
-  },
-  {
-    key: '6',
-    logo: <SiExpress />,
-    exp: 'ExpressJs',
-    exp_desc: 'Express.js is a fast, minimalist, and flexible web application framework for Node.js.',
-  },
+const backendSkills: SkillData[] = [
+  { key: '1', logo: <SiPython />, name: 'Python', description: 'Advanced scripting logic', color: '#3776AB' },
+  { key: '2', logo: <SiDjango />, name: 'Django', description: 'Secure Web Framework', color: '#092E20' },
+  { key: '3', logo: <SiFlask />, name: 'Flask', description: 'Micro-web framework', color: '#ffffff' },
+  { key: '4', logo: <FaNode />, name: 'Node.js', description: 'Server-side runtime', color: '#339933' },
+  { key: '5', logo: <SiExpress />, name: 'Express', description: 'API development', color: '#ffffff' },
+  { key: '6', logo: <SiMongodb />, name: 'MongoDB', description: 'NoSQL document storage', color: '#47A248' },
 ];
 
-const Experience: React.FC = () => {
+// --- Sub-Component: Skill Card ---
+const SkillCard = ({ logo, name, description, color }: SkillData) => {
+  const cardRef = useRef<HTMLDivElement>(null);
+  const iconRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const card = cardRef.current;
+    const icon = iconRef.current;
+    if (!card || !icon) return;
+
+    // Hover Animation Logic
+    const handleMouseEnter = () => {
+      gsap.to(card, {
+        y: -10,
+        scale: 1.02,
+        borderColor: color, // Glows with brand color
+        boxShadow: `0 10px 30px -10px ${color}40`, // Colored shadow
+        duration: 0.4,
+        ease: 'power2.out',
+      });
+      gsap.to(icon, {
+        scale: 1.2,
+        rotate: 5,
+        color: color,
+        duration: 0.4,
+      });
+    };
+
+    const handleMouseLeave = () => {
+      gsap.to(card, {
+        y: 0,
+        scale: 1,
+        borderColor: 'rgba(255, 255, 255, 0.1)',
+        boxShadow: '0 0 0 0 transparent',
+        duration: 0.4,
+        ease: 'power2.out',
+      });
+      gsap.to(icon, {
+        scale: 1,
+        rotate: 0,
+        color: '#94a3b8', // Return to slate-400
+        duration: 0.4,
+      });
+    };
+
+    card.addEventListener('mouseenter', handleMouseEnter);
+    card.addEventListener('mouseleave', handleMouseLeave);
+
+    return () => {
+      card.removeEventListener('mouseenter', handleMouseEnter);
+      card.removeEventListener('mouseleave', handleMouseLeave);
+    };
+  }, [color]);
+
   return (
-    <div className="container experience__container" id="experience">
-      <p>Which skills i have</p>
-      <h2>Skills</h2>
-      <h3>
-        | <Image src={FRONTEND_IMG} alt="Frontend" /> Frontend |
-      </h3>
-      <div className="exp__items__container">
-        {experience_data_frontend.map(({ key, logo, exp, exp_desc }) => {
-          return (
-            <div className="exp__item" key={key} data-aos="slide-up">
-              {logo}
-              <h3>{exp}</h3>
-              <p>{exp_desc}</p>
-            </div>
-          );
-        })}
+    <div
+      ref={cardRef}
+      className="skill-card group relative p-6 bg-slate-800/50 backdrop-blur-sm border border-white/10 rounded-xl overflow-hidden cursor-default transition-colors"
+    >
+      <div className="relative z-10 flex flex-col gap-4">
+        <div 
+          ref={iconRef} 
+          className="text-4xl text-slate-400 transition-colors"
+        >
+          {logo}
+        </div>
+        <div>
+          <h4 className="text-lg font-semibold text-slate-100 mb-1">{name}</h4>
+          <p className="text-sm text-slate-400 leading-relaxed">{description}</p>
+        </div>
+      </div>
+      
+      {/* Subtle Background Gradient Blob */}
+      <div 
+        className="absolute -right-4 -bottom-4 w-24 h-24 rounded-full opacity-0 group-hover:opacity-10 transition-opacity duration-500 blur-2xl"
+        style={{ backgroundColor: color }}
+      />
+    </div>
+  );
+};
+
+// --- Main Component ---
+const Experience = () => {
+  const containerRef = useRef<HTMLDivElement>(null);
+  
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      // 1. Header Animation
+      gsap.from('.section-header', {
+        y: 30,
+        opacity: 0,
+        duration: 1,
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: containerRef.current,
+          start: 'top 80%',
+        }
+      });
+
+      // 2. Staggered Grid Animation (Frontend)
+      gsap.from('.frontend-grid .skill-card', {
+        y: 50,
+        opacity: 0,
+        duration: 0.8,
+        stagger: 0.1,
+        ease: 'power2.out',
+        scrollTrigger: {
+          trigger: '.frontend-grid',
+          start: 'top 85%',
+        }
+      });
+
+      // 3. Staggered Grid Animation (Backend)
+      gsap.from('.backend-grid .skill-card', {
+        y: 50,
+        opacity: 0,
+        duration: 0.8,
+        stagger: 0.1,
+        ease: 'power2.out',
+        scrollTrigger: {
+          trigger: '.backend-grid',
+          start: 'top 85%',
+        }
+      });
+
+    }, containerRef); // Scope cleanup
+
+    return () => ctx.revert();
+  }, []);
+
+  return (
+    <section ref={containerRef} className="min-h-screen bg-slate-950 py-24 px-6 overflow-hidden relative">
+      {/* Background Decor */}
+      <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
+        <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-blue-600/10 rounded-full blur-[120px]" />
+        <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-purple-600/10 rounded-full blur-[120px]" />
       </div>
 
-      <h3>
-        |<Image src={BACKEND_IMG} alt="Backend" /> Backend |
-      </h3>
-      <div className="exp__items__container">
-        {experience_data_backend.map(({ key, logo, exp, exp_desc }) => {
-          return (
-            <div className="exp__item" key={key} data-aos="zoom-in-up">
-              {logo}
-              <h3>{exp}</h3>
-              <p>{exp_desc}</p>
-            </div>
-          );
-        })}
+      <div className="max-w-7xl mx-auto relative z-10">
+        
+        {/* Main Header */}
+        <div className="section-header text-center mb-20">
+          <span className="text-blue-500 font-medium tracking-widest text-sm uppercase bg-blue-500/10 px-4 py-2 rounded-full mb-6 inline-block">
+            Tech Stack
+          </span>
+          <h2 className="text-4xl md:text-5xl font-bold text-slate-100 mb-6 tracking-tight">
+            Expertise & <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">Tools</span>
+          </h2>
+          <p className="text-slate-400 max-w-2xl mx-auto text-lg">
+            A comprehensive overview of the technologies I use to build scalable, robust, and modern web applications.
+          </p>
+        </div>
+
+        {/* Frontend Section */}
+        <div className="mb-24">
+          <div className="flex items-center gap-4 mb-10">
+            <h3 className="text-2xl font-bold text-slate-200">Frontend Development</h3>
+            <div className="h-[1px] flex-1 bg-gradient-to-r from-slate-800 to-transparent"></div>
+          </div>
+          
+          <div className="frontend-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {frontendSkills.map((skill) => (
+              <SkillCard  {...skill} />
+            ))}
+          </div>
+        </div>
+
+        {/* Backend Section */}
+        <div>
+          <div className="flex items-center gap-4 mb-10">
+            <h3 className="text-2xl font-bold text-slate-200">Backend Architecture</h3>
+            <div className="h-[1px] flex-1 bg-gradient-to-r from-slate-800 to-transparent"></div>
+          </div>
+          
+          <div className="backend-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {backendSkills.map((skill) => (
+              <SkillCard  {...skill} />
+            ))}
+          </div>
+        </div>
+
       </div>
-    </div>
+    </section>
   );
 };
 
