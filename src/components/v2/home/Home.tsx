@@ -8,11 +8,16 @@ import { gsap } from 'gsap';
 import { IoTerminal } from 'react-icons/io5';
 import { BsArrowReturnRight } from 'react-icons/bs';
 import { SiUpwork } from 'react-icons/si';
-import { FaGithub, FaLinkedin, FaBehance } from 'react-icons/fa';
+import { FaGithub, FaLinkedin, FaBehance, FaEnvelope } from 'react-icons/fa';
 
 import MY_IMAGE from '@/assets/my.png';
+import { FaUpwork } from 'react-icons/fa6';
 
-const Home: React.FC = () => {
+interface HomeProps {
+  cvUrl?: string;
+}
+
+const Home: React.FC<HomeProps> = ({ cvUrl }) => {
   const [roleIndex, setRoleIndex] = useState(0);
   const roles = ["FullStack Developer", "Tech Enthusiast", "Gamer", "Entrepreneur", "Learner"];
 
@@ -103,13 +108,19 @@ const Home: React.FC = () => {
       {/* Social Sidebar - Left */}
       <div className="absolute left-8 xl:left-12 bottom-0 hidden xl:flex flex-col gap-6 items-center z-20">
         <div className="flex flex-col gap-6">
+            <a href="mailto:mumer119131@gmail.com" target="_blank" rel="noreferrer" className="text-slate-400 hover:text-blue-400 text-xl transition-all hover:-translate-y-1 hover:scale-110">
+            <FaEnvelope />
+          </a>
+            <a href="https://www.upwork.com/freelancers/~018f0a3f855d9f92d9" target="_blank" rel="noreferrer" className="text-slate-400 hover:text-blue-400 text-xl transition-all hover:-translate-y-1 hover:scale-110">
+            <FaUpwork />
+          </a>
           <a href="https://github.com/mumer119131" target="_blank" rel="noreferrer" className="text-slate-400 hover:text-blue-400 text-xl transition-all hover:-translate-y-1 hover:scale-110">
             <FaGithub />
           </a>
           <a href="https://www.linkedin.com/in/dev-umer/" target="_blank" rel="noreferrer" className="text-slate-400 hover:text-blue-400 text-xl transition-all hover:-translate-y-1 hover:scale-110">
             <FaLinkedin />
           </a>
-          <a href="https://www.behance.net/mumer4" target="_blank" rel="noreferrer" className="text-slate-400 hover:text-blue-400 text-xl transition-all hover:-translate-y-1 hover:scale-110">
+          <a href="https://www.ance.net/mumer4" target="_blank" rel="noreferrer" className="text-slate-400 hover:text-blue-400 text-xl transition-all hover:-translate-y-1 hover:scale-110">
             <FaBehance />
           </a>
         </div>
@@ -152,15 +163,17 @@ const Home: React.FC = () => {
                 transition={{ duration: 0.3 }}
                 className="text-lg sm:text-xl text-slate-400 font-mono absolute"
               >
-                ♰ {roles[roleIndex]}
+                ㄔ {roles[roleIndex]}
               </motion.p>
             </AnimatePresence>
           </div>
 
           <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
             <a 
-              href="/cv.pdf" 
+              href={cvUrl || "/cv.pdf"} 
               download 
+              target="_blank"
+              rel="noopener noreferrer"
               className="hero-btn group relative px-8 py-3 rounded-full bg-slate-800 text-white font-medium border border-slate-700 overflow-hidden transition-all hover:border-blue-500 hover:shadow-[0_0_20px_rgba(59,130,246,0.3)]"
             >
               <div className="absolute inset-0 bg-blue-600/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>

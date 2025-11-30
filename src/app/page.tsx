@@ -99,51 +99,57 @@ export default function Page() {
   const [loading, setLoading] = useState(true);
   const [projects, setProjects] = useState<Project[]>([]);
   const [testimonials, setTestimonials] = useState<Testimonial[]>([]);
+  const [cvUrl, setCvUrl] = useState<string>('');
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        // Fetch Projects
-        const projectsRes = await fetch('/api/projects');
-        let projectsData = [];
-        if (projectsRes.ok) {
-            const rawProjects = await projectsRes.json();
-            projectsData = rawProjects.map((item: any) => ({
-                id: item.sys.id,
-                img: `https:${item.fields.image.fields.file.url}`,
-                web_name: item.fields.title,
-                details: item.fields.description,
-                github_link: item.fields.githubUrl || '',
-                live_preview: item.fields.previewUrl || '',
-                is_visible: item.fields.isVisible ?? true,
-            }));
-        } else {
-            projectsData = backup_projects;
-        }
-        setProjects(projectsData);
+        const res = await fetch('/api/content');
         
-        // Fetch Testimonials
-        const testimonialsRes = await fetch('/api/testimonials');
-        let testimonialsData = [];
-        if (testimonialsRes.ok) {
-          const rawTestimonials = await testimonialsRes.json();
-          testimonialsData = rawTestimonials.map((item: any) => ({
-            name: item.fields.customerName || 'Anonymous',
-            role: item.fields.customerUsername || 'Client',
-            text: item.fields.review || 'No feedback provided.',
-            company: 'Verified Client',
-          }));
+        if (res.ok) {
+          const data = await res.json();
+          const items = data.items || [];
+
+          // Process Projects
+          const projectsData = items
+            .filter((item: any) => item.sys.contentType.sys.id === 'projects')
+            .map((item: any) => ({
+              id: item.sys.id,
+              img: item.fields.image?.fields?.file?.url ? `https:${item.fields.image.fields.file.url}` : '',
+              web_name: item.fields.title,
+              details: item.fields.description,
+              github_link: item.fields.githubUrl || '',
+              live_preview: item.fields.previewUrl || '',
+              is_visible: item.fields.isVisible ?? true,
+            }));
+          setProjects(projectsData.length > 0 ? projectsData : backup_projects);
+
+          // Process Testimonials
+          const testimonialsData = items
+            .filter((item: any) => item.sys.contentType.sys.id === 'testimonials')
+            .map((item: any) => ({
+              name: item.fields.customerName || 'Anonymous',
+              role: item.fields.customerUsername || 'Client',
+              text: item.fields.review || 'No feedback provided.',
+              company: 'Verified Client',
+            }));
+          setTestimonials(testimonialsData.length > 0 ? testimonialsData : backup_testimonials);
+
+          // Process CV
+          const cvEntry = items.find((item: any) => item.sys.contentType.sys.id === 'cv');
+          if (cvEntry && cvEntry.fields.cvPdf?.fields?.file?.url) {
+            setCvUrl(`https:${cvEntry.fields.cvPdf.fields.file.url}`);
+          }
+
         } else {
-          testimonialsData = backup_testimonials;
+          throw new Error('Failed to fetch content');
         }
-        setTestimonials(testimonialsData);
 
       } catch (error) {
         console.error("Error fetching data:", error);
         setProjects(backup_projects);
         setTestimonials(backup_testimonials);
       } finally {
-        // Add a small delay to ensure smooth transition
         setTimeout(() => setLoading(false), 1000);
       }
     };
@@ -158,7 +164,7 @@ export default function Page() {
   return (
     <main className="min-h-screen text-slate-200 selection:bg-blue-500/30 selection:text-blue-200">
       <Navigation />
-      <Home />
+      <Home cvUrl={cvUrl} />
       <Portfolio projects={projects} />
       <Testimonials testimonials={testimonials} />
       <Experience />

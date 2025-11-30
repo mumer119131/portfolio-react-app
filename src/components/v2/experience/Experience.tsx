@@ -10,41 +10,34 @@ import { GrReactjs } from 'react-icons/gr';
 import { FaNode, FaAws } from 'react-icons/fa';
 import { RiNextjsLine } from 'react-icons/ri';
 import { TbBrandReactNative } from 'react-icons/tb';
+import { Tilt } from 'react-tilt';
 
 gsap.registerPlugin(ScrollTrigger);
 
 const Experience: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
-  const cardsRef = useRef<HTMLDivElement[]>([]);
+  const rowsRef = useRef<HTMLDivElement[]>([]);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Entrance Animation
-      gsap.fromTo(cardsRef.current, 
-        { 
-          y: 100, 
-          opacity: 0,
-          scale: 0.5,
-          rotationX: -45
-        },
-        {
-          y: 0,
-          opacity: 1,
-          scale: 1,
-          rotationX: 0,
-          duration: 0.8,
-          stagger: {
-            amount: 0.8,
-            grid: [3, 6],
-            from: "center"
-          },
-          ease: 'back.out(1.7)',
-          scrollTrigger: {
-            trigger: containerRef.current,
-            start: 'top 70%',
+      // Entrance Animation: Rows sliding in from left/right
+      rowsRef.current.forEach((row, index) => {
+        const direction = index % 2 === 0 ? -100 : 100; // Left for even, Right for odd
+        
+        gsap.fromTo(row,
+          { x: direction, opacity: 0 },
+          {
+            x: 0,
+            opacity: 1,
+            duration: 1.5,
+            ease: 'power3.out',
+            scrollTrigger: {
+              trigger: row,
+              start: 'top 85%',
+            }
           }
-        }
-      );
+        );
+      });
     }, containerRef);
     return () => ctx.revert();
   }, []);
@@ -70,6 +63,56 @@ const Experience: React.FC = () => {
     { icon: <FaAws />, name: 'AWS', color: '#FF9900' },
   ];
 
+  // Split skills into 3 rows
+  const row1 = skills.slice(0, 6);
+  const row2 = skills.slice(6, 12);
+  const row3 = skills.slice(12, 18);
+
+  const SkillCard = ({ skill }: { skill: typeof skills[0] }) => (
+    <Tilt 
+      className="w-40 h-40 flex-shrink-0 mx-4 relative group cursor-pointer"
+      options={{
+        max: 45,
+        scale: 1.1,
+        speed: 400,
+        glare: true,
+        "max-glare": 0.5,
+        perspective: 500
+      } as any}
+      style={{ transformStyle: 'preserve-3d' }}
+    >
+      <div className="w-full h-full bg-slate-900/50 backdrop-blur-sm rounded-2xl border border-white/10 group-hover:border-blue-500/50 transition-all duration-300 flex flex-col items-center justify-center gap-3 shadow-xl" style={{ transformStyle: 'preserve-3d' }}>
+        <div 
+          className="text-4xl text-slate-400 group-hover:text-[var(--color)] transition-all duration-300 group-hover:drop-shadow-[0_0_20px_var(--color)]" 
+          style={{ '--color': skill.color, transform: 'translateZ(80px)' } as React.CSSProperties}
+        >
+          <div className="transition-transform duration-300">
+            {skill.icon}
+          </div>
+        </div>
+        <span 
+          className="text-slate-300 font-medium text-sm tracking-wide group-hover:text-white transition-colors"
+          style={{ transform: 'translateZ(50px)' }}
+        >
+          {skill.name}
+        </span>
+      </div>
+    </Tilt>
+  );
+
+  const MarqueeRow = ({ items, direction, rowIndex }: { items: typeof skills, direction: 'left' | 'right', rowIndex: number }) => (
+    <div 
+      ref={(el) => { if (el) rowsRef.current[rowIndex] = el }}
+      className="flex w-full overflow-hidden py-4 relative mask-gradient"
+    >
+      <div className={`flex animate-marquee-${direction} whitespace-nowrap`}>
+        {[...items, ...items, ...items, ...items].map((skill, idx) => (
+          <SkillCard key={`${rowIndex}-${idx}`} skill={skill} />
+        ))}
+      </div>
+    </div>
+  );
+
   return (
     <section 
       ref={containerRef} 
@@ -87,50 +130,11 @@ const Experience: React.FC = () => {
         </h2>
       </div>
 
-      <div className="container mx-auto px-6 relative z-10">
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 perspective-1000">
-          {skills.map((skill, index) => (
-            <div 
-              key={index}
-              ref={(el) => { if (el) cardsRef.current[index] = el }}
-              className="skill-card group relative p-[1px] rounded-2xl overflow-hidden transition-all duration-300 hover:scale-105 animate-float"
-              style={{ animationDelay: `${Math.random() * 2}s` }}
-            >
-              {/* Gradient Border on Hover */}
-              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent translate-x-[-100%] group-hover:animate-shimmer" />
-              
-              {/* Card Content */}
-              <div className="relative h-full bg-slate-900/80 backdrop-blur-sm rounded-2xl p-6 flex flex-col items-center justify-center gap-4 border border-white/5 group-hover:border-blue-500/30 transition-colors">
-                <div 
-                  className="text-4xl text-slate-400 group-hover:text-[var(--color)] transition-all duration-300 group-hover:scale-110 group-hover:drop-shadow-[0_0_15px_var(--color)]" 
-                  style={{ '--color': skill.color } as React.CSSProperties}
-                >
-                  {skill.icon}
-                </div>
-                <span className="text-slate-300 font-medium text-sm tracking-wide group-hover:text-white transition-colors">
-                  {skill.name}
-                </span>
-              </div>
-            </div>
-          ))}
-        </div>
+      <div className="w-full max-w-[100vw] flex flex-col gap-8 relative z-10">
+        <MarqueeRow items={row1} direction="left" rowIndex={0} />
+        <MarqueeRow items={row2} direction="right" rowIndex={1} />
+        <MarqueeRow items={row3} direction="left" rowIndex={2} />
       </div>
-
-      <style jsx>{`
-        @keyframes float {
-          0%, 100% { transform: translateY(0); }
-          50% { transform: translateY(-5px); }
-        }
-        .animate-float {
-          animation: float 3s ease-in-out infinite;
-        }
-        @keyframes shimmer {
-          100% { transform: translateX(100%); }
-        }
-        .group-hover\:animate-shimmer:hover {
-          animation: shimmer 1.5s infinite;
-        }
-      `}</style>
     </section>
   );
 };

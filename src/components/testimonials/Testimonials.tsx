@@ -66,7 +66,7 @@ const Testimonials: React.FC = () => {
       
       // Initial State: All cards except the first one are off-screen to the right
       gsap.set(cards, { x: '120%', opacity: 0, rotate: 5 });
-      gsap.set(cards[0], { x: 0, opacity: 1, rotate: 0 });
+      gsap.set(cards[0] as any, { x: 0, opacity: 1, rotate: 0 });
 
       const tl = gsap.timeline({
         scrollTrigger: {
