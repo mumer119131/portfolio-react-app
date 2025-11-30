@@ -8,6 +8,7 @@ import {TbActivityHeartbeat} from 'react-icons/tb'
 import {VscComment} from 'react-icons/vsc'
 import {RiContactsLine} from 'react-icons/ri'
 import LOGO from '../../assets/mu_logo.png'
+import Image from 'next/image'
 
 const Navigation = () => {
   const [activeNav, setActiveNav] = useState("#");
@@ -16,7 +17,7 @@ const Navigation = () => {
       <a href="#" title='Home' onClick={ ()=> setActiveNav("#")} className={activeNav === "#" ? 'active' : ''}><BiHomeAlt /></a>
       <a href="#about" title='About' onClick={ ()=> setActiveNav("about")} className={activeNav === "about" ? 'active' : ''}><AiOutlineUser /></a>
       <a href="#experience" title='Experience' onClick={ ()=> setActiveNav("experience")} className={activeNav === "experience" ? 'active' : ''}><IoIosGitNetwork /></a>
-      <a href='#'><img src={LOGO} alt="" /></a>
+      <a href='#'><Image src={LOGO} alt="" className='w-[1rem] h-[1rem] object-contain'/></a>
       <a href="#portfolio" title='Portfolio' onClick={ ()=> setActiveNav("portfolio")} className={activeNav === "portfolio" ? 'active' : ''}><TbActivityHeartbeat /></a>
       <a href="#testimonials" title='Testimonials' onClick={ ()=> setActiveNav("testimonials")} className={activeNav === "testimonials" ? 'active' : ''}><VscComment /></a>
       <a href="#contact" title='Contact' onClick={ ()=> setActiveNav("contact")} className={activeNav === "contact" ? 'active' : ''}><RiContactsLine /></a>

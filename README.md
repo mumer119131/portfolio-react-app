@@ -1,70 +1,167 @@
-# Getting Started with Create React App
+# Portfolio - Next.js 15 + TypeScript
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A modern, interactive portfolio website built with Next.js 15, TypeScript, and React 19.
 
-## Available Scripts
+## 🚀 Features
 
-In the project directory, you can run:
+- 💼 **Professional Portfolio** - Showcase your projects, skills, and experience
+- 🖥️ **Interactive Console** - Retro TV-style terminal interface
+- 🎮 **3D Game** - Physics-based sphere character game using Three.js
+- 🎨 **Modern Design** - Tailwind CSS with custom styling
+- ⚡ **Next.js 15** - Latest features with App Router
+- 📱 **Fully Responsive** - Works on all devices
+- 🔍 **SEO Optimized** - Built-in metadata and analytics
 
-### `npm start`
+## 🛠️ Tech Stack
 
-Runs the app in the development mode.\
+- **Framework**: Next.js 15.0.3
+- **Language**: TypeScript 5.7.2
+- **UI Library**: React 18.3.1
+- **Styling**: Tailwind CSS 3.4.16
+- **3D Graphics**: Three.js, React Three Fiber
+- **Animations**: Framer Motion, AOS
+- **Forms**: EmailJS
+- **Deployment**: Vercel
+
+## 📦 Installation
+
+### Prerequisites
+- Node.js 18+ 
+- npm or yarn
+
+### Setup
+
+1. **Clone the repository**
+```bash
+git clone <your-repo-url>
+cd portfolio-react-app
+```
+
+2. **Install dependencies**
+```bash
+npm install
+```
+
+3. **Set up environment variables**
+```bash
+Copy .env.example to .env.local and fill in your credentials:
+
+NEXT_PUBLIC_TEMPLATE_ID=your_emailjs_template_id
+NEXT_PUBLIC_SERVICE_ID=your_emailjs_service_id
+NEXT_PUBLIC_PUBLIC_KEY=your_emailjs_public_key
+```
+
+4. **Run development server**
+```bash
+npm run dev
+```
+
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## 📜 Available Scripts
 
-### `npm test`
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm start` - Start production server
+- `npm run lint` - Run ESLint
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## 📁 Project Structure
 
-### `npm run build`
+```
+src/
+├── app/                    # Next.js App Router
+│   ├── layout.tsx         # Root layout
+│   ├── page.tsx           # Homepage
+│   ├── console/           # Console page
+│   └── game/              # Game page
+├── components/            # React components
+│   ├── home/
+│   ├── about/
+│   ├── portfolio/
+│   ├── experience/
+│   ├── testimonials/
+│   ├── contact/
+│   ├── console/
+│   ├── TV/
+│   └── game/
+├── data/                  # Data files
+└── assets/                # Static assets
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## 🎨 Features Breakdown
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Main Portfolio (/)
+- Hero section with download CV
+- About me with animated eye-tracking
+- Skills showcase (Frontend & Backend)
+- Project gallery with live previews
+- Client testimonials
+- Contact form with EmailJS integration
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Console (/console)
+- Retro TV monitor design
+- Interactive terminal with custom commands
+- File explorer
+- Settings panel with background customization
+- Draggable windows
+- Shutdown animation
 
-### `npm run eject`
+### Game (/game)
+- 3D physics-based game
+- Third-person camera
+- WASD movement controls
+- Jump and run mechanics
+- Procedurally generated objects
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## 🚀 Deployment
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Deploy to Vercel (Recommended)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+1. Push your code to GitHub
+2. Import your repository in Vercel
+3. Add environment variables in Vercel dashboard
+4. Deploy!
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new)
 
-## Learn More
+## 🔧 Configuration
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### EmailJS Setup
+1. Create account at [EmailJS](https://www.emailjs.com/)
+2. Create email service
+3. Create email template
+4. Copy credentials to `.env.local`
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Customization
+- Colors: `tailwind.config.ts` and `src/app/globals.css`
+- Content: Update component files in `src/components/`
+- Projects: Modify `src/components/portfolio/Portfolio.tsx`
+- Console commands: Edit `src/data/console.ts`
 
-### Code Splitting
+## 📝 Migration from CRA
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+This project was migrated from Create React App to Next.js 15. See [MIGRATION_GUIDE.md](./MIGRATION_GUIDE.md) for details.
 
-### Analyzing the Bundle Size
+## 📄 License
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+This project is open source and available under the [MIT License](LICENSE).
 
-### Making a Progressive Web App
+## 👤 Author
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+**Muhammad Umer**
+- GitHub: [@mumer119131](https://github.com/mumer119131)
+- LinkedIn: [M Umer](https://www.linkedin.com/in/m-umer-06602821b/)
+- Portfolio: [Your Portfolio URL]
 
-### Advanced Configuration
+## 🤝 Contributing
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+Contributions, issues, and feature requests are welcome!
 
-### Deployment
+## ⭐ Show your support
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+Give a ⭐️ if you like this project!
 
-### `npm run build` fails to minify
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Built with ❤️ using Next.js and TypeScript
+
