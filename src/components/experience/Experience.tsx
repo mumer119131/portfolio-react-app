@@ -172,7 +172,7 @@ const Experience = () => {
   }, []);
 
   return (
-    <section ref={containerRef} className="min-h-screen bg-slate-950 py-24 px-6 overflow-hidden relative">
+    <section ref={containerRef} className="min-h-screen bg-slate-950 py-24 px-6 overflow-hidden relative z-20">
       {/* Background Decor */}
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
         <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-blue-600/10 rounded-full blur-[120px]" />

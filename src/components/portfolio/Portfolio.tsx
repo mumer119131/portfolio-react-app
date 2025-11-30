@@ -1,10 +1,13 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
-import './portfolio.css';
+import React, { useEffect, useState, useRef } from 'react';
 import LoadingState from './LoadingState/LoadingState';
-import { Tilt } from 'react-tilt';
 import Image from 'next/image';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa';
+
+gsap.registerPlugin(ScrollTrigger);
 
 interface Project {
   id: string;
@@ -75,6 +78,7 @@ const backup_projects: Project[] = [
 const Portfolio: React.FC = () => {
   const [projects, setProjects] = useState<Project[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const getProjects = async () => {
@@ -87,7 +91,7 @@ const Portfolio: React.FC = () => {
           img: `https:${item.fields.image.fields.file.url}`,
           web_name: item.fields.title,
           details: item.fields.description,
-          github_link: item.fields.githubUrl || '', // No GitHub link in new CMS structure
+          github_link: item.fields.githubUrl || '',
           live_preview: item.fields.previewUrl || '',
           is_visible: item.fields.isVisible ?? true,
         }));
@@ -103,56 +107,120 @@ const Portfolio: React.FC = () => {
     getProjects();
   }, []);
 
+  useEffect(() => {
+    if (!isLoading && projects.length > 0) {
+      const ctx = gsap.context(() => {
+        const cards = gsap.utils.toArray('.project-card');
+        
+        cards.forEach((card: any, i) => {
+          const nextCard = cards[i + 1] as HTMLElement;
+          
+          if (nextCard) {
+            gsap.to(card, {
+              scale: 0.9,
+              filter: 'blur(10px)',
+              ease: 'none',
+              scrollTrigger: {
+                trigger: nextCard,
+                start: "top bottom",
+                end: "top 15%",
+                scrub: true,
+              }
+            });
+          }
+        });
+      }, containerRef);
+      return () => ctx.revert();
+    }
+  }, [isLoading, projects]);
+
   return (
-    <div className="container portfolio__container" id="portfolio">
-      <p>Check out my recent work</p>
-      <h2>Projects</h2>
+    <section ref={containerRef} id="portfolio" className="relative w-full min-h-screen bg-slate-950 py-24 px-6 z-10 overflow-hidden">
+      {/* Background Ambience */}
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px] pointer-events-none" />
+      <div className="absolute top-1/3 right-0 w-96 h-96 bg-blue-900/10 rounded-full blur-[100px] pointer-events-none" />
 
-      <div className="portfolio__items">
-        {isLoading ? (
-          <LoadingState />
-        ) : (
-          projects
-            .filter((p) => p.is_visible !== false)
-            .map(({ id, img, web_name, details, github_link, live_preview }) => (
-              <Tilt key={id} className="portfolio__item group" data-aos="zoom-in-up">
-                <div className="relative">
-                  <Image
-                    src={img}
-                    alt={web_name}
-                    width={400}
-                    height={300}
-                    className="w-full h-auto"
-                  />
+      <div className="max-w-6xl mx-auto relative z-10">
+        {/* Header */}
+        <div className="text-center mb-24">
+          <p className="text-blue-500 font-medium tracking-widest text-sm uppercase mb-3">
+            My Recent Work
+          </p>
+          <h2 className="text-4xl md:text-5xl font-bold text-slate-100">
+            Featured <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500">Projects</span>
+          </h2>
+        </div>
+
+        {/* Projects Stack */}
+        <div className="flex flex-col pb-24">
+          {isLoading ? (
+            <LoadingState />
+          ) : (
+            projects
+              .filter((p) => p.is_visible !== false)
+              .map(({ id, img, web_name, details, github_link, live_preview }, index) => (
+                <div 
+                  key={id} 
+                  className="project-card sticky top-[15%] min-h-[500px] w-full bg-slate-900 border border-white/10 rounded-3xl overflow-hidden shadow-2xl flex flex-col md:flex-row mb-24 last:mb-0"
+                  style={{ zIndex: index + 1 }}
+                >
+                  {/* Image Section */}
+                  <div className="w-full md:w-1/2 relative h-64 md:h-auto overflow-hidden group">
+                    <Image
+                      src={img}
+                      alt={web_name}
+                      fill
+                      className="object-cover transition-transform duration-700 group-hover:scale-110"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 via-transparent to-transparent" />
+                  </div>
+
+                  {/* Content Section */}
+                  <div className="w-full md:w-1/2 p-8 md:p-12 flex flex-col justify-center relative">
+                    <div className="absolute top-0 right-0 p-6 opacity-10 text-9xl font-bold text-white select-none pointer-events-none">
+                      {index + 1}
+                    </div>
+                    
+                    <h3 className="text-3xl font-bold text-slate-100 mb-4 group-hover:text-blue-400 transition-colors">
+                      {web_name}
+                    </h3>
+                    <p className="text-slate-400 text-lg leading-relaxed mb-8">
+                      {details}
+                    </p>
+
+                    {/* Buttons */}
+                    <div className="flex gap-4 mt-auto">
+                      {github_link && (
+                        <a 
+                          href={github_link} 
+                          target="_blank" 
+                          rel="noreferrer" 
+                          className="px-6 py-3 rounded-xl bg-slate-800 text-slate-300 font-medium border border-slate-700 hover:bg-slate-700 hover:text-white hover:border-slate-600 transition-all flex items-center gap-2"
+                        >
+                          <FaGithub /> Code
+                        </a>
+                      )}
+
+                      {live_preview && (
+                        <a
+                          href={live_preview}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="px-6 py-3 rounded-xl bg-blue-600 text-white font-medium hover:bg-blue-500 hover:shadow-[0_0_20px_rgba(37,99,235,0.4)] transition-all flex items-center gap-2"
+                        >
+                          <FaExternalLinkAlt /> Live Demo
+                        </a>
+                      )}
+                    </div>
+                  </div>
                 </div>
-
-                <h3>{web_name}</h3>
-                <p className="flex-grow">{details}</p>
-
-                <div className="btn__container w-[80%] m-auto flex justify-center">
-                  {github_link && (
-                    <a href={github_link} target="_blank" rel="noreferrer" className="btn whitespace-nowrap flex-grow">
-                      Source Code
-                    </a>
-                  )}
-
-                  {live_preview && (
-                    <a
-                      href={live_preview}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="btn btn__primary whitespace-nowrap flex-grow"
-                    >
-                      Live Preview
-                    </a>
-                  )}
-                </div>
-              </Tilt>
-            ))
-        )}
+              ))
+          )}
+        </div>
       </div>
-    </div>
+    </section>
   );
 };
 
 export default Portfolio;
+
